@@ -1,7 +1,9 @@
 # laya-ara
 
+Arabic typed-decision fine-tune of `laya-multilingual` (MASSIVE-ar, XNLI-ar, OSACT4-A).
+
 <p align="center">
-  <img src="assets/logo.jpg" alt="laya-ara" width="280">
+  <img src="assets/logo.jpg" alt="laya-ara mark" width="280">
 </p>
 
 **Mohammad Alkhenizan** · 21 September 2026

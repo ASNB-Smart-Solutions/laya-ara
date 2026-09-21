@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "laya-ara"
+title: "laya-ara: Arabic typed-decision fine-tuning of laya-multilingual"
 message: "If you use this model, please cite it and the evaluation sets you report."
 type: software
 authors:
@@ -12,10 +12,9 @@ abstract: >-
   20-option intent accuracy is 0.816 versus 0.386 stock.
 keywords:
   - arabic
+  - nlu
   - laya
-  - system-one
-  - typed-decisions
-  - massive
+  - intent-classification
   - xnli
   - osact
 license: OTHER
@@ -24,7 +23,7 @@ repository-code: "https://github.com/ASNB-Smart-Solutions/laya-ara"
 url: "https://huggingface.co/Wouze/laya-ara"
 preferred-citation:
   type: generic
-  title: "laya-ara"
+  title: "laya-ara: Arabic typed-decision fine-tuning of laya-multilingual"
   authors:
     - family-names: Alkhenizan
       given-names: Mohammad

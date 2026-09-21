@@ -1,6 +1,7 @@
 ---
 language:
   - ar
+pretty_name: laya-ara
 license: other
 license_name: xnli-cc-by-nc
 license_link: https://creativecommons.org/licenses/by-nc/4.0/legalcode
@@ -10,11 +11,14 @@ datasets:
   - facebook/xnli
 tags:
   - arabic
+  - nlu
   - laya
-  - laya-ara
-  - typed-decisions
+  - intent-classification
+  - natural-language-inference
 library_name: laya
 pipeline_tag: text-classification
+inference: false
+thumbnail: https://huggingface.co/Wouze/laya-ara/resolve/main/assets/logo.jpg
 metrics:
   - accuracy
   - f1
