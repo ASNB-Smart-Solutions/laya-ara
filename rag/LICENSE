@@ -1,0 +1,14 @@
+Apache License
+Version 2.0, January 2004
+http://www.apache.org/licenses/
+
+This repository’s *code and documentation* are Apache-2.0, matching the
+Laya / mmBERT base.
+
+These **weights** were not trained on facebook/xnli. They were trained on
+MIRACL-ar train (cite Zhang et al. 2023), a MASSIVE-ar cap (CC BY 4.0),
+and **unreleased** in-house Arabic fatwa search logs. The logs, corpus,
+teacher ranks, and human gold questions are **not** licensed by this file
+and must not be redistributed from a copy of this repository.
+
+See NOTICE.md and DATA.md.

@@ -15,7 +15,7 @@ encoder/
 tokenizer/
 ```
 
-GitHub `README.md` has the tables and **no** Hub YAML. Upload prepends `huggingface.yaml`. Also ships `RESULTS.md`, `FINDINGS.md`, `NOTICE.md`, `LICENSE`, citations, `results/`, `examples/`.
+GitHub `README.md` lists **both** models. The Hub NLU card is `card.md` + `huggingface.yaml`. RAG Hub card is `rag/README.md` via `scripts/upload_rag_to_hf.py`.
 
 Do **not** upload `data/processed/**` JSONL (XNLI and tweets).
 

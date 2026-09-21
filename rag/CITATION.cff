@@ -1,0 +1,74 @@
+cff-version: 1.2.0
+title: "laya-ara-rag: Arabic short-list reranking with laya-multilingual"
+message: "If you use this model, please cite it and the evaluation sets you report."
+type: software
+authors:
+  - family-names: Alkhenizan
+    given-names: Mohammad
+    website: https://www.linkedin.com/in/mohammad-alkhenizan-537623257
+abstract: >-
+  laya-ara-rag is a fine-tune of convaiinnovations/laya-multilingual for
+  Arabic pairwise relevance and listwise reranking (k≤12). MIRACL-ar
+  listwise top-1 rises 0.153 to 0.588 (+284% relative to stock). The mix
+  includes in-house Arabic retrieval logs (not redistributed) and a
+  MIRACL-ar train replay. XNLI is withheld.
+keywords:
+  - arabic
+  - information-retrieval
+  - reranking
+  - rag
+  - miracl
+  - laya
+license: Apache-2.0
+date-released: "2026-09-21"
+repository-code: "https://github.com/ASNB-Smart-Solutions/laya-ara"
+url: "https://huggingface.co/Wouze/laya-ara-rag"
+preferred-citation:
+  type: generic
+  title: "laya-ara-rag: Arabic short-list reranking with laya-multilingual"
+  authors:
+    - family-names: Alkhenizan
+      given-names: Mohammad
+  year: 2026
+  notes: "Fine-tune of convaiinnovations/laya-multilingual. In-house fatwa logs are not released. Not a first-stage retriever. Not nDCG@10."
+references:
+  - type: article
+    title: "mmBERT: A Modern Multilingual Encoder with Annealed Language Learning"
+    authors:
+      - family-names: Marone
+        given-names: Marc
+      - family-names: Weller
+        given-names: Orion
+      - family-names: Fleshman
+        given-names: William
+      - family-names: Yang
+        given-names: Eugene
+      - family-names: Lawrie
+        given-names: Dawn
+      - family-names: Van Durme
+        given-names: Benjamin
+    year: 2025
+    doi: "10.48550/arXiv.2509.06888"
+  - type: article
+    title: "MIRACL: A Multilingual Retrieval Dataset Covering 18 Diverse Languages"
+    authors:
+      - family-names: Zhang
+        given-names: Xinyu
+      - family-names: Thakur
+        given-names: Nandan
+      - family-names: Ogundepo
+        given-names: Odunayo
+      - family-names: Kamalloo
+        given-names: Ehsan
+      - family-names: Alfonso-Hermelo
+        given-names: David
+      - family-names: Li
+        given-names: Xiaoguang
+      - family-names: Liu
+        given-names: Qun
+      - family-names: Rezagholizadeh
+        given-names: Mehdi
+      - family-names: Lin
+        given-names: Jimmy
+    year: 2023
+    doi: "10.1162/tacl_a_00595"

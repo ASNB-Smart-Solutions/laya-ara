@@ -39,7 +39,8 @@ def copy_ckpt(src: Path, dest: Path) -> None:
     for doc in ("NOTICE.md", "LICENSE", "CITATION.cff", "citations.bib", "FINDINGS.md", "RESULTS.md", "UPLOAD.md"):
         shutil.copy2(ROOT / doc, dest / doc)
     header = (ROOT / "huggingface.yaml").read_text()
-    body = (ROOT / "README.md").read_text()
+    # GitHub README lists both models. The Hub NLU card is card.md only.
+    body = (ROOT / "card.md").read_text()
     (dest / "README.md").write_text(header.rstrip() + "\n\n" + body.lstrip())
     for folder in ("results", "examples", "assets"):
         target = dest / folder

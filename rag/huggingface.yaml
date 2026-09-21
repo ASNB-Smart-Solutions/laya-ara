@@ -1,0 +1,92 @@
+---
+language:
+  - ar
+pretty_name: laya-ara-rag
+license: apache-2.0
+base_model: convaiinnovations/laya-multilingual
+base_model_relation: finetune
+datasets:
+  - miracl/miracl
+  - AmazonScience/massive
+tags:
+  - arabic
+  - information-retrieval
+  - reranking
+  - rag
+  - laya
+library_name: laya
+pipeline_tag: text-ranking
+inference: false
+thumbnail: https://huggingface.co/Wouze/laya-ara-rag/resolve/main/assets/logo.jpg
+metrics:
+  - accuracy
+model-index:
+  - name: laya-ara-rag
+    results:
+      - task:
+          type: text-classification
+          name: Listwise rerank (k≤12)
+        dataset:
+          type: miracl/miracl
+          name: MIRACL-ar dev
+          config: ar
+          split: dev
+        metrics:
+          - type: accuracy
+            value: 0.588
+            name: Top-1 among ≤12
+      - task:
+          type: text-classification
+          name: Pairwise relevance
+        dataset:
+          type: miracl/miracl
+          name: MIRACL-ar dev
+          config: ar
+          split: dev
+        metrics:
+          - type: accuracy
+            value: 0.788
+            name: Accuracy
+      - task:
+          type: text-classification
+          name: Listwise rerank (k≤12)
+        dataset:
+          type: mr-tydi
+          name: Mr.TyDi-ar
+          config: arabic
+        metrics:
+          - type: accuracy
+            value: 0.632
+            name: Top-1 among ≤12
+      - task:
+          type: text-classification
+          name: Listwise rerank (k≤12)
+        dataset:
+          type: sadeem-ai/SadeemQuestionRetrieval
+          name: SadeemQuestion
+        metrics:
+          - type: accuracy
+            value: 0.871
+            name: Top-1 among ≤12
+      - task:
+          type: text-classification
+          name: Listwise rerank (k≤12)
+        dataset:
+          type: facebook/mlqa
+          name: MLQA-ar
+          config: mlqa.ar.ar
+        metrics:
+          - type: accuracy
+            value: 0.582
+            name: Top-1 among ≤12
+      - task:
+          type: text-classification
+          name: Listwise rerank (k≤12)
+        dataset:
+          type: AmazonScience/xpqa
+          name: XPQA-ar
+        metrics:
+          - type: accuracy
+            value: 0.665
+            name: Top-1 among ≤12
+---

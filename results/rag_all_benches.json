@@ -1,0 +1,64 @@
+{
+  "name": "laya-ara-rag",
+  "model": "artifacts/laya-ara-rag",
+  "local_dir": "artifacts/laya-ar-ameen",
+  "base": "convaiinnovations/laya-multilingual",
+  "init_from": "artifacts/laya-ar-rag",
+  "scored": "2026-09-21",
+  "protocol": "Frozen Laya JSONL. Pairwise noul or listwise choice k<=12. Not nDCG@10. Not generation.",
+  "sibling": "https://huggingface.co/Wouze/laya-ara",
+  "github_all_cards": "results/all_cards.json",
+  "mix": {
+    "items": 35591,
+    "xnli": false,
+    "public": {
+      "miracl_ar_train_replay": 7995,
+      "massive_ar_cap": 2000
+    },
+    "in_house_fatwa_logs": {
+      "released": false,
+      "pair_train": 17064,
+      "rerank_train": 8532,
+      "note": "Gap-filtered teacher distillation. Corpus and queries not in this repo."
+    }
+  },
+  "headlines": {
+    "miracl_rerank": {"stock": 0.153, "laya_ara_rag": 0.588, "rel_pct": 284, "times": 3.84},
+    "mlqa_rerank": {"stock": 0.133, "laya_ara_rag": 0.582, "rel_pct": 338},
+    "in_domain_pair": {"stock": 0.812, "laya_ara_rag": 0.938, "rel_pct": 16}
+  },
+  "findings": {
+    "headline": "Public listwise 6/7 vs MIRACL-only predecessor. In-domain human pair 0.812 -> 0.938. Do not advertise 21-row listwise as 100%.",
+    "do_not_share": [
+      "fatwa corpus, search logs, teacher ranks, gold questions",
+      "human listwise 21/21 as a leaderboard number",
+      "0.588 as MIRACL nDCG@10 or a retriever",
+      "Mintaka/MLQA/XPQA pairwise as a sweep"
+    ]
+  },
+  "rerank_k12": {
+    "miracl_ar_dev": {"n": 2896, "kind": "in-family", "stock": 0.153, "laya_ara": 0.210, "miracl_only": 0.536, "laya_ara_rag": 0.588},
+    "mrtydi_ar_train2000": {"n": 2000, "kind": "transfer", "stock": 0.176, "laya_ara": 0.260, "miracl_only": 0.610, "laya_ara_rag": 0.632},
+    "sadeem": {"n": 2089, "kind": "transfer", "stock": 0.168, "laya_ara": 0.242, "miracl_only": 0.781, "laya_ara_rag": 0.871},
+    "mlqa_test2000": {"n": 2000, "kind": "transfer", "stock": 0.133, "laya_ara": 0.214, "miracl_only": 0.507, "laya_ara_rag": 0.582},
+    "xpqa": {"n": 750, "kind": "transfer", "stock": 0.213, "laya_ara": 0.281, "miracl_only": 0.495, "laya_ara_rag": 0.665},
+    "phqa": {"n": 86, "kind": "transfer", "stock": 0.116, "laya_ara": 0.244, "miracl_only": 0.326, "laya_ara_rag": 0.488, "note": "tiny n"},
+    "mintaka": {"n": 2203, "kind": "transfer", "stock": 0.285, "laya_ara": 0.311, "miracl_only": 0.403, "laya_ara_rag": 0.388, "note": "predecessor wins"}
+  },
+  "pair_noul": {
+    "miracl_ar_dev": {"n": 5792, "negs": "human", "stock": 0.688, "laya_ara": 0.629, "miracl_only": 0.758, "laya_ara_rag": 0.788},
+    "mrtydi_ar_train2000": {"n": 4000, "negs": "BM25", "stock": 0.755, "laya_ara": 0.740, "miracl_only": 0.811, "laya_ara_rag": 0.834},
+    "sadeem": {"n": 4178, "negs": "random corpus", "stock": 0.837, "laya_ara": 0.919, "miracl_only": 0.913, "laya_ara_rag": 0.941},
+    "phqa": {"n": 172, "negs": "random FAQ", "stock": 0.791, "laya_ara": 0.773, "miracl_only": 0.843, "laya_ara_rag": 0.866},
+    "mintaka": {"n": 4406, "negs": "random entity", "stock": 0.537, "laya_ara": 0.616, "miracl_only": 0.526, "laya_ara_rag": 0.513, "note": "laya-ara wins"},
+    "mlqa_test2000": {"n": 4000, "negs": "random paragraph", "stock": 0.731, "laya_ara": 0.784, "miracl_only": 0.707, "laya_ara_rag": 0.706},
+    "xpqa": {"n": 1500, "negs": "random answer", "stock": 0.623, "laya_ara": 0.697, "miracl_only": 0.625, "laya_ara_rag": 0.615}
+  },
+  "in_domain_fatwa_aggregates": {
+    "released": false,
+    "human_pair": {"n": 112, "stock": 0.812, "miracl_only": 0.732, "laya_ara_rag": 0.938},
+    "teacher_pair_hold": {"n": 400, "stock": 0.640, "miracl_only": 0.662, "laya_ara_rag": 0.792, "note": "teacher agreement, not clicks"},
+    "teacher_rerank_hold": {"n": 200, "stock": 0.110, "miracl_only": 0.355, "laya_ara_rag": 0.575, "note": "teacher agreement, not clicks"},
+    "human_rerank": {"n": 21, "do_not_headline": true, "note": "predecessor already 20/21; too small to advertise"}
+  }
+}

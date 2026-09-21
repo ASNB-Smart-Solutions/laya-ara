@@ -2,7 +2,7 @@
 
 Frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. Relative lift is *(model − stock) / stock*.
 
-Card: [`README.md`](README.md) · JSON: [`nlu_benches.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/nlu_benches.json) · all models: [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json) · RAG: [`laya-ara-rag/RESULTS.md`](https://huggingface.co/Wouze/laya-ara-rag/blob/main/RESULTS.md)
+Hub: [`Wouze/laya-ara`](https://huggingface.co/Wouze/laya-ara). JSON: [`results/nlu_benches.json`](results/nlu_benches.json) · [`results/all_cards.json`](results/all_cards.json). RAG tables: [`rag/RESULTS.md`](rag/RESULTS.md).
 
 ## Highlights vs base
 
@@ -36,6 +36,6 @@ Card: [`README.md`](README.md) · JSON: [`nlu_benches.json`](https://huggingface
 | PublicHealthQA-ar | 86 | 0.116 | 0.244 | +110% |
 | Mintaka-ar | 2203 | 0.285 | 0.311 | +9% |
 
-Specialist rerank numbers: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
+Specialist rerank: Hub [`Wouze/laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag) · this repo [`rag/RESULTS.md`](rag/RESULTS.md).
 
 Contact: [Mohammad Alkhenizan](https://www.linkedin.com/in/mohammad-alkhenizan-537623257).

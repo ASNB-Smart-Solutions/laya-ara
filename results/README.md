@@ -1,5 +1,9 @@
-This card: [`nlu_benches.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/nlu_benches.json). Tables: [`RESULTS.md`](https://huggingface.co/Wouze/laya-ara/blob/main/RESULTS.md).
+| File | Model |
+|---|---|
+| [`nlu_benches.json`](nlu_benches.json) | laya-ara |
+| [`rag_all_benches.json`](rag_all_benches.json) | laya-ara-rag |
+| [`all_cards.json`](all_cards.json) | both |
 
-All models: [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json). RAG: [`Wouze/laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
+Tables: [`../RESULTS.md`](../RESULTS.md) · [`../rag/RESULTS.md`](../rag/RESULTS.md).
 
-Contact: [Mohammad Alkhenizan](https://www.linkedin.com/in/mohammad-alkhenizan-537623257).
+Hub: [`Wouze/laya-ara`](https://huggingface.co/Wouze/laya-ara) · [`Wouze/laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).

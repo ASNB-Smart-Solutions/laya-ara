@@ -1,6 +1,6 @@
 # Additional experiments
 
-Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released NLU card is the v48 mix. Tables: [`RESULTS.md`](RESULTS.md). JSON: [`nlu_benches.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/nlu_benches.json) · [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json). RAG sibling: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
+Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released NLU card is the v48 mix. Tables: [`RESULTS.md`](RESULTS.md). JSON: [`nlu_benches.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/nlu_benches.json) · [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json). RAG: Hub [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag) · this repo [`rag/`](rag/).
 
 ## Setup
 
@@ -10,7 +10,7 @@ After the released mix, we trained three one-epoch specialists from stock (quote
 |---|---:|---|---|
 | laya-ara (released) | multi-cycle mix | yes (capped) | In-domain MASSIVE / OSACT-A / XNLI |
 | laya-ara-quote | 56,070 | no | Sentiment and hate fine-tune |
-| **laya-ara-rag** | **35,591** | no | In-house retrieval logs + MIRACL replay; [sibling card](https://huggingface.co/Wouze/laya-ara-rag) |
+| **laya-ara-rag** | **35,591** | no | In-house retrieval logs + MIRACL replay; [Hub](https://huggingface.co/Wouze/laya-ara-rag) · [`rag/`](rag/) |
 | MIRACL-only ablation | 11,995 | no | Wikipedia pair + listwise; not the Hub RAG name |
 | laya-ara-triage | 1,200 + 2k MASSIVE | no | Synthetic Gulf support heads |
 
@@ -32,7 +32,7 @@ ASTD accuracy 0.694 with macro-F1 0.404 indicates majority-class improvement, no
 
 ## Reranking specialist (**laya-ara-rag**)
 
-The public RAG name is the in-house + MIRACL merge, not the Wikipedia-only 11,995-item run. Full tables: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
+The public RAG name is the in-house + MIRACL merge, not the Wikipedia-only 11,995-item run. Full tables: [`rag/RESULTS.md`](rag/RESULTS.md) · Hub [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
 
 | Task | *n* | Kind | Stock | laya-ara | MIRACL-only | **laya-ara-rag** |
 |---|---:|---|---:|---:|---:|---:|

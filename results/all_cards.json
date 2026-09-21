@@ -23,7 +23,7 @@
     },
     "laya-ara-rag": {
       "hub": "https://huggingface.co/Wouze/laya-ara-rag",
-      "github": "https://github.com/ASNB-Smart-Solutions/laya-ara-rag",
+      "github": "https://github.com/ASNB-Smart-Solutions/laya-ara/tree/master/rag",
       "local": "artifacts/laya-ara-rag",
       "xnli": false,
       "role": "Short-list relevance / rerank. Fatwa logs not released."
