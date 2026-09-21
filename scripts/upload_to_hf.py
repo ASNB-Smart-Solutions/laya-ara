@@ -3,9 +3,9 @@
 
   export HF_TOKEN=hf_...
   python scripts/upload_to_hf.py --ckpt /path/to/laya-ar-v48 \\
-      --repo-id YOUR_USER/laya-arabic-system-one --dry-run
+      --repo-id Wouze/laya-ara --dry-run
   python scripts/upload_to_hf.py --ckpt /path/to/laya-ar-v48 \\
-      --repo-id YOUR_USER/laya-arabic-system-one
+      --repo-id Wouze/laya-ara
 
 Does not upload raw XNLI / OSACT tweet dumps. Weights that saw XNLI stay
 research-only — the card says so.
@@ -36,18 +36,19 @@ def copy_ckpt(src: Path, dest: Path) -> None:
     for extra in ("temperatures_train.json", "train_report.json"):
         if (src / extra).is_file():
             shutil.copy2(src / extra, dest / extra)
-    for doc in ("README.md", "NOTICE.md", "LICENSE"):
+    for doc in ("README.md", "NOTICE.md", "LICENSE", "CITATION.cff", "citations.bib", "FINDINGS.md", "UPLOAD.md"):
         shutil.copy2(ROOT / doc, dest / doc)
-    results = dest / "results"
-    if results.exists():
-        shutil.rmtree(results)
-    shutil.copytree(ROOT / "results", results)
+    for folder in ("results", "examples"):
+        target = dest / folder
+        if target.exists():
+            shutil.rmtree(target)
+        shutil.copytree(ROOT / folder, target)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--ckpt", type=Path, required=True, help="local Laya dir")
-    parser.add_argument("--repo-id", required=True, help="HF repo, e.g. user/laya-arabic-system-one")
+    parser.add_argument("--repo-id", required=True, help="HF repo, e.g. user/laya-ara")
     parser.add_argument("--staging", type=Path, default=ROOT / ".staging_upload")
     parser.add_argument("--private", action="store_true", default=True)
     parser.add_argument("--public", action="store_true", help="create a public repo")
@@ -69,7 +70,7 @@ def main() -> None:
         folder_path=str(args.staging),
         repo_id=args.repo_id,
         repo_type="model",
-        commit_message="Add Arabic Laya System One checkpoint and full bench tables",
+        commit_message="Add laya-ara checkpoint and full bench tables",
     )
     print("uploaded", f"https://huggingface.co/{args.repo_id}")
 

@@ -9,6 +9,9 @@ os.environ.setdefault("USE_TF", "0")
 
 import laya
 
+# After upload: Wouze/laya-ara
+# Until then, stock or a local checkpoint:
+#   LAYA_AR_MODEL=artifacts/laya-ar-v48  or  convaiinnovations/laya-multilingual
 MODEL = os.environ.get("LAYA_AR_MODEL", "convaiinnovations/laya-multilingual")
 
 STATE = {

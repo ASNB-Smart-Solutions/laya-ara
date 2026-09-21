@@ -1,8 +1,25 @@
 {
+  "name": "laya-ara",
   "model": "artifacts/laya-ar-v48",
   "base": "convaiinnovations/laya-multilingual",
   "scored": "2026-09-21",
   "protocol": "Same frozen Laya JSONL for stock and v48. Not generation. RAG is k<=12 rerank/relevance, not nDCG@10.",
+  "findings": {
+    "headline": "Three specialists. None replaces v48 on MASSIVE/XNLI/OSACT-A.",
+    "share_nlu": "v48 MASSIVE-ar 20-opt intent 0.386 -> 0.816",
+    "share_rag_ft_listwise": [
+      {"task": "miracl_ar_rerank_dev", "kind": "in-family", "n": 2896, "stock": 0.153, "rag_ft": 0.536, "delta": 0.383},
+      {"task": "mrtydi_ar_rerank", "kind": "transfer", "n": 2000, "stock": 0.176, "rag_ft": 0.610, "delta": 0.435},
+      {"task": "sadeem_rerank", "kind": "transfer", "n": 2089, "stock": 0.168, "rag_ft": 0.781, "delta": 0.613},
+      {"task": "mlqa_rerank", "kind": "transfer", "n": 2000, "stock": 0.133, "rag_ft": 0.507, "delta": 0.375},
+      {"task": "xpqa_rerank", "kind": "transfer", "n": 750, "stock": 0.213, "rag_ft": 0.495, "delta": 0.281}
+    ],
+    "do_not_share": [
+      "ASTD quote 0.694 acc as balanced 4-way (F1 0.404)",
+      "rag-ft 0.536 as nDCG@10 or a retriever",
+      "synthetic triage hold200 as production ticket accuracy"
+    ]
+  },
   "locked": {
     "massive_ar_scenario_test": {"n": 2974, "metric": "accuracy", "stock": 0.4274, "v48": 0.8648, "delta": 0.4374},
     "xnli_ar_test": {"n": 5010, "metric": "accuracy", "stock": 0.6858, "v48": 0.7234, "delta": 0.0375},
@@ -36,11 +53,64 @@
     "xpqa_pair_test": {"n": 1500, "negs": "random answer", "stock": 0.6233, "v48": 0.6967, "delta": 0.0733},
     "xpqa_rerank_test": {"n": 750, "negs": "random answer", "stock": 0.2133, "v48": 0.2813, "delta": 0.0680}
   },
+  "rag_ft": {
+    "note": "laya-ar-rag from stock, no XNLI, 11995 items (MIRACL-ar train pair+rerank + 4k MASSIVE). Frozen eval. Still top-1@k<=12, not nDCG@10. Pairwise mixed; listwise 7/7.",
+    "checkpoint": "artifacts/laya-ar-rag",
+    "n_train": 11995,
+    "pair": {
+      "miracl_ar_dev": {"n": 5792, "stock": 0.6875, "v48": 0.6295, "rag_ft": 0.7585},
+      "mrtydi_ar_train2000": {"n": 4000, "stock": 0.7548, "v48": 0.7398, "rag_ft": 0.811},
+      "sadeem": {"n": 4178, "stock": 0.837, "v48": 0.919, "rag_ft": 0.913},
+      "phqa": {"n": 172, "stock": 0.791, "v48": 0.773, "rag_ft": 0.843},
+      "mintaka": {"n": 4406, "stock": 0.537, "v48": 0.616, "rag_ft": 0.526},
+      "mlqa_test2000": {"n": 4000, "stock": 0.731, "v48": 0.784, "rag_ft": 0.707},
+      "xpqa": {"n": 1500, "stock": 0.623, "v48": 0.697, "rag_ft": 0.625}
+    },
+    "rerank": {
+      "miracl_ar_dev": {"n": 2896, "stock": 0.1526, "v48": 0.2103, "rag_ft": 0.5359},
+      "mrtydi_ar_train2000": {"n": 2000, "stock": 0.176, "v48": 0.260, "rag_ft": 0.610},
+      "sadeem": {"n": 2089, "stock": 0.168, "v48": 0.242, "rag_ft": 0.781},
+      "phqa": {"n": 86, "stock": 0.116, "v48": 0.244, "rag_ft": 0.326},
+      "mintaka": {"n": 2203, "stock": 0.285, "v48": 0.311, "rag_ft": 0.403},
+      "mlqa_test2000": {"n": 2000, "stock": 0.133, "v48": 0.214, "rag_ft": 0.507},
+      "xpqa": {"n": 750, "stock": 0.213, "v48": 0.281, "rag_ft": 0.495}
+    }
+  },
   "not_measured": [
     "Token NER (ANERCorp) — no BIO/span head",
     "TyDiQA / ARCD span EM-F1 — sentence pick only",
     "Official MIRACL nDCG@10 over Arabic Wikipedia",
     "ALUE private tests",
     "AraBERT/MARBERT on the same Laya templates"
-  ]
+  ],
+  "quote_mix": {
+    "note": "laya-ar-quote from stock, no XNLI, 1 epoch. AJGT/LABR/ASTD/OSACT-HS are fine-tune. XNLI is zero-shot. Does not replace v48 on locked suite. ASTD acc 0.694 vs F1 0.404 is majority-class.",
+    "checkpoint": "artifacts/laya-ar-quote",
+    "n_train": 56070,
+    "locked": {
+      "massive_ar_scenario_test": {"n": 2974, "stock": 0.4274, "v48": 0.8648, "quote": 0.8218},
+      "xnli_ar_test": {"n": 5010, "stock": 0.6858, "v48": 0.7234, "quote": 0.6970, "quote_kind": "zero-shot"},
+      "osact4_a_val": {"n": 1000, "stock_acc": 0.844, "v48_acc": 0.920, "quote_acc": 0.901, "stock_f1": 0.7262, "v48_f1": 0.8621, "quote_f1": 0.8234}
+    },
+    "fine_tune": {
+      "osact4_hs_val": {"n": 1000, "stock": [0.932, 0.655], "v48": [0.875, 0.645], "quote": [0.963, 0.677]},
+      "ajgt_test": {"n": 360, "stock": [0.833, 0.832], "v48": [0.756, 0.747], "quote": [0.875, 0.875]},
+      "labr_binary_test": {"n": 2348, "stock": [0.759, 0.758], "v48": [0.766, 0.764], "quote": [0.834, 0.834]},
+      "astd_hold1500": {"n": 1500, "stock": [0.295, 0.286], "v48": [0.326, 0.297], "quote": [0.694, 0.404]}
+    },
+    "transfer": {
+      "tydiqa_ar_sent_val": {"n": 298, "stock": [0.359, 0.155], "v48": [0.413, 0.170], "quote": [0.406, 0.140]}
+    }
+  },
+  "triage_synthetic": {
+    "note": "laya-ar-triage, 1200/200 authored Gulf lines, not real tickets. Init from v48.",
+    "checkpoint": "artifacts/laya-ar-triage",
+    "smoke_churn": {"stock": 0.029, "v48": 0.030, "triage_ft": 0.914},
+    "hold200": {
+      "queue_acc": {"stock": 0.395, "v48": 0.440, "triage_ft": 0.750},
+      "urgency_nearest": {"stock": 0.225, "v48": 0.240, "triage_ft": 0.330},
+      "refund_f1": {"stock": 0.732, "v48": 0.711, "triage_ft": 0.949},
+      "churn_f1": {"stock": 0.064, "v48": 0.182, "triage_ft": 0.913}
+    }
+  }
 }

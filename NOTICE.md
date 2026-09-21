@@ -13,9 +13,15 @@ This repository is **not** TypeSafe Jev and **not** English `convaiinnovations/l
 | AmazonScience/massive ar-SA | Train + eval | CC BY 4.0 | Attribution required. Commercial OK. |
 | OSACT4 Offensive Subtask A | Train + eval | Shared-task / research | Cite OSACT4. Confirm redistribution. |
 | facebook/xnli Arabic | Train (capped) + eval | **CC BY-NC 4.0** | **v48 weights are research / non-commercial.** Do not ship as a commercial product dump. Do not upload raw XNLI text. |
-| MIRACL-ar, Mr.TyDi, Sadeem, MLQA, XPQA, Mintaka, PublicHealthQA | Eval only | See each dataset card | PublicHealthQA is CC BY-NC-SA (eval only). |
+| MIRACL-ar, Mr.TyDi, Sadeem, MLQA, XPQA, Mintaka, PublicHealthQA | Eval (all); MIRACL-ar **train** is in `laya-ara-rag` | See each dataset card | PublicHealthQA is CC BY-NC-SA (eval only). |
 
-A later **quote-mix** checkpoint (`laya-ar-quote`) is trained **without XNLI** and is the commercial-friendlier path if it beats v48 on the tasks you want to quote.
+**laya-ara-quote** is trained **without XNLI** (MASSIVE + OSACT-A + OSACT-HS + AJGT + LABR + ASTD remainder). Commercial-friendlier than **laya-ara**. It wins the sentiment/hate **fine-tunes** vs stock and laya-ara; it does **not** beat laya-ara on MASSIVE / XNLI / OSACT-A. Pick the card by task. Do not treat quote XNLI 0.697 as an NLI train result (zero-shot).
+
+**laya-ara-rag** is also **without XNLI** (MIRACL-ar train pair+rerank + 4k MASSIVE). Use for k≤12 relevance. Do not call it a retriever. It does not replace laya-ara on the locked suite.
+
+## Citation
+
+Use [`CITATION.cff`](CITATION.cff) and [`citations.bib`](citations.bib). If you report a dataset score, cite that paper as well as this checkpoint. Encoder: Marone et al. 2025 (mmBERT). Head: ConvAI `laya-multilingual`. What to share vs not: [`FINDINGS.md`](FINDINGS.md).
 
 ## Anti-claims
 

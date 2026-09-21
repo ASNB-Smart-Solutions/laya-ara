@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 .hf_token
 .env
+.staging_upload/
 artifacts/
 *.safetensors
 encoder/

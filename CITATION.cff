@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+title: "laya-ara"
+message: "If you use this model, please cite it and the evaluation sets you report."
+type: software
+authors:
+  - family-names: Radhi
+    given-names: Abdulrahman
+abstract: >-
+  Fine-tune of convaiinnovations/laya-multilingual for Arabic typed
+  decisions (choice / score / noul). Research weights: the v48 mix
+  includes facebook/xnli (CC BY-NC 4.0).
+keywords:
+  - arabic
+  - laya
+  - system-one
+  - typed-decisions
+  - massive
+  - xnli
+  - osact
+license: OTHER
+date-released: "2026-09-21"
+repository-code: "https://github.com/ASNB-Smart-Solutions/laya-ara"
+url: "https://huggingface.co/Wouze/laya-ara"
+preferred-citation:
+  type: generic
+  title: "laya-ara"
+  authors:
+    - family-names: Radhi
+      given-names: Abdulrahman
+  year: 2026
+  notes: "Fine-tune of convaiinnovations/laya-multilingual. Research / non-commercial (XNLI CC BY-NC in the mix)."
+references:
+  - type: article
+    title: "mmBERT: A Modern Multilingual Encoder with Annealed Language Learning"
+    authors:
+      - family-names: Marone
+        given-names: Marc
+      - family-names: Weller
+        given-names: Orion
+      - family-names: Fleshman
+        given-names: William
+      - family-names: Yang
+        given-names: Eugene
+      - family-names: Lawrie
+        given-names: Dawn
+      - family-names: Van Durme
+        given-names: Benjamin
+    year: 2025
+    doi: "10.48550/arXiv.2509.06888"
