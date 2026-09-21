@@ -1,0 +1,46 @@
+{
+  "model": "artifacts/laya-ar-v48",
+  "base": "convaiinnovations/laya-multilingual",
+  "scored": "2026-09-21",
+  "protocol": "Same frozen Laya JSONL for stock and v48. Not generation. RAG is k<=12 rerank/relevance, not nDCG@10.",
+  "locked": {
+    "massive_ar_scenario_test": {"n": 2974, "metric": "accuracy", "stock": 0.4274, "v48": 0.8648, "delta": 0.4374},
+    "xnli_ar_test": {"n": 5010, "metric": "accuracy", "stock": 0.6858, "v48": 0.7234, "delta": 0.0375},
+    "osact4_a_val": {"n": 1000, "metric": "macro_f1", "stock": 0.7262, "v48": 0.8621, "delta": 0.1359, "stock_acc": 0.844, "v48_acc": 0.92}
+  },
+  "massive_variants": {
+    "intent_20opt_test": {"n": 2974, "metric": "accuracy", "stock": 0.3860, "v48": 0.8164, "delta": 0.4304, "note": "Laya-card protocol; published stock ~0.38-0.40"},
+    "hierarchical_intent_kge2": {"n": 2694, "metric": "accuracy", "stock": 0.5356, "v48": 0.8931, "delta": 0.3575}
+  },
+  "translated_nlu": {
+    "osact4_hs_val": {"n": 1000, "metric": "accuracy / macro_f1", "stock": [0.932, 0.655], "v48": [0.875, 0.645], "note": "v48 worse; 44 HS / 956 NOT_HS"},
+    "ajgt_test": {"n": 360, "metric": "accuracy / macro_f1", "stock": [0.833, 0.832], "v48": [0.756, 0.747], "note": "v48 worse; not in FT mix"},
+    "labr_binary_test": {"n": 2348, "metric": "accuracy / macro_f1", "stock": [0.759, 0.758], "v48": [0.766, 0.764]},
+    "astd_hold1500": {"n": 1500, "metric": "accuracy / macro_f1", "stock": [0.295, 0.286], "v48": [0.326, 0.297], "note": "majority Objective ~0.65; both below"},
+    "tydiqa_ar_sent_val": {"n": 298, "metric": "accuracy / macro_f1", "stock": [0.359, 0.155], "v48": [0.413, 0.170], "note": "sentence pick, not span EM/F1"}
+  },
+  "rag": {
+    "note": "Pairwise = 1 gold + 1 neg noul. Listwise = choice k<=12. Chance pair 0.50; listwise ~0.083 except MIRACL 0.113.",
+    "miracl_ar_pair_dev": {"n": 5792, "negs": "human", "stock": 0.6875, "v48": 0.6295, "delta": -0.0580},
+    "miracl_ar_rerank_dev": {"n": 2896, "negs": "human", "stock": 0.1526, "v48": 0.2103, "delta": 0.0577},
+    "mrtydi_ar_pair_train2000": {"n": 4000, "negs": "BM25", "stock": 0.7548, "v48": 0.7398, "delta": -0.0150},
+    "mrtydi_ar_rerank_train2000": {"n": 2000, "negs": "BM25", "stock": 0.1755, "v48": 0.2600, "delta": 0.0845},
+    "sadeem_pair_test": {"n": 4178, "negs": "random corpus", "stock": 0.8372, "v48": 0.9193, "delta": 0.0821},
+    "sadeem_rerank_test": {"n": 2089, "negs": "random corpus", "stock": 0.1680, "v48": 0.2422, "delta": 0.0742},
+    "phqa_pair_test": {"n": 172, "negs": "random FAQ", "stock": 0.7907, "v48": 0.7733, "delta": -0.0174},
+    "phqa_rerank_test": {"n": 86, "negs": "random FAQ", "stock": 0.1163, "v48": 0.2442, "delta": 0.1279, "note": "tiny n"},
+    "mintaka_pair_test": {"n": 4406, "negs": "random entity", "stock": 0.5370, "v48": 0.6160, "delta": 0.0790},
+    "mintaka_rerank_test": {"n": 2203, "negs": "random entity", "stock": 0.2851, "v48": 0.3114, "delta": 0.0263},
+    "mlqa_pair_test2000": {"n": 4000, "negs": "random paragraph", "stock": 0.7313, "v48": 0.7835, "delta": 0.0522},
+    "mlqa_rerank_test2000": {"n": 2000, "negs": "random paragraph", "stock": 0.1325, "v48": 0.2135, "delta": 0.0810},
+    "xpqa_pair_test": {"n": 1500, "negs": "random answer", "stock": 0.6233, "v48": 0.6967, "delta": 0.0733},
+    "xpqa_rerank_test": {"n": 750, "negs": "random answer", "stock": 0.2133, "v48": 0.2813, "delta": 0.0680}
+  },
+  "not_measured": [
+    "Token NER (ANERCorp) — no BIO/span head",
+    "TyDiQA / ARCD span EM-F1 — sentence pick only",
+    "Official MIRACL nDCG@10 over Arabic Wikipedia",
+    "ALUE private tests",
+    "AraBERT/MARBERT on the same Laya templates"
+  ]
+}

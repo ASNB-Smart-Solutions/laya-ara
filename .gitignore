@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pt
+*.pyc
+.hf_token
+.env
+artifacts/
+*.safetensors
+encoder/
+tokenizer/
+model.safetensors
