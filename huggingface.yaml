@@ -1,0 +1,71 @@
+---
+language:
+  - ar
+license: other
+license_name: xnli-cc-by-nc
+license_link: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+base_model: convaiinnovations/laya-multilingual
+datasets:
+  - AmazonScience/massive
+  - facebook/xnli
+tags:
+  - arabic
+  - laya
+  - laya-ara
+  - typed-decisions
+library_name: laya
+pipeline_tag: text-classification
+metrics:
+  - accuracy
+  - f1
+model-index:
+  - name: laya-ara
+    results:
+      - task:
+          type: text-classification
+          name: Intent (20-option)
+        dataset:
+          type: AmazonScience/massive
+          name: MASSIVE ar-SA
+          config: ar-SA
+          split: test
+        metrics:
+          - type: accuracy
+            value: 0.816
+            name: Accuracy
+      - task:
+          type: text-classification
+          name: Scenario (18-way)
+        dataset:
+          type: AmazonScience/massive
+          name: MASSIVE ar-SA
+          config: ar-SA
+          split: test
+        metrics:
+          - type: accuracy
+            value: 0.865
+            name: Accuracy
+      - task:
+          type: text-classification
+          name: NLI
+        dataset:
+          type: facebook/xnli
+          name: XNLI-ar
+          config: ar
+          split: test
+        metrics:
+          - type: accuracy
+            value: 0.723
+            name: Accuracy
+      - task:
+          type: text-classification
+          name: Offensive language
+        dataset:
+          type: osact4
+          name: OSACT4-A
+          split: validation
+        metrics:
+          - type: f1
+            value: 0.862
+            name: Macro-F1
+---
