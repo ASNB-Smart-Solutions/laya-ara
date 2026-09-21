@@ -15,7 +15,7 @@ encoder/
 tokenizer/
 ```
 
-GitHub `README.md` has the tables and **no** Hub YAML (that dump looks broken on GitHub). Upload prepends the short four-row `huggingface.yaml` so the Hub widget stays small. Also ships `FINDINGS.md`, `NOTICE.md`, `LICENSE`, citations, `results/`, `examples/`.
+GitHub `README.md` has the tables and **no** Hub YAML. Upload prepends `huggingface.yaml`. Also ships `RESULTS.md`, `FINDINGS.md`, `NOTICE.md`, `LICENSE`, citations, `results/`, `examples/`.
 
 Do **not** upload `data/processed/**` JSONL (XNLI and tweets).
 

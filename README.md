@@ -1,31 +1,41 @@
 # laya-ara
 
-Arabic typed-decision fine-tune of `laya-multilingual` (MASSIVE-ar, XNLI-ar, OSACT4-A).
+Arabic NLU for typed decisions — intent, NLI, and short-list ranking on [`laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual).
 
 <p align="center">
-  <img src="assets/logo.jpg" alt="laya-ara mark" width="280">
+  <img src="assets/logo.jpg" alt="laya-ara" width="280">
 </p>
 
-**Mohammad Alkhenizan** · 21 September 2026
+**Mohammad Alkhenizan** · 21 September 2026 · [LinkedIn](https://www.linkedin.com/in/mohammad-alkhenizan-537623257)
 
-NLU card. Sibling RAG specialist: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag). Code: [`ASNB-Smart-Solutions/laya-ara`](https://github.com/ASNB-Smart-Solutions/laya-ara). Combined tables (all cards): [`results/all_cards.json`](results/all_cards.json) on GitHub.
+[`Hugging Face`](https://huggingface.co/Wouze/laya-ara) · [`GitHub`](https://github.com/ASNB-Smart-Solutions/laya-ara) · RAG sibling: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag)
+
+## Highlights vs `laya-multilingual`
+
+Relative lift is *(fine-tune − stock) / stock* on the same frozen Laya templates.
+
+| Arabic task | *n* | Base | **laya-ara** | Relative lift |
+|---|---:|---:|---:|---:|
+| Intent, 20 options (MASSIVE ar-SA) | 2974 | 0.386 | **0.816** | **+111%** |
+| Scenario, 18-way (MASSIVE ar-SA) | 2974 | 0.427 | **0.865** | **+103%** |
+| Hierarchical intent | 2694 | 0.536 | **0.893** | **+67%** |
+| Offensive language, macro-F1 (OSACT4-A) | 1000 | 0.726 | **0.862** | **+19%** |
+| Natural language inference (XNLI-ar) | 5010 | 0.686 | **0.723** | +5% |
+
+Full tables, specialists, and JSON: [`RESULTS.md`](RESULTS.md) · [`results/all_cards.json`](results/all_cards.json).
 
 ## Abstract
 
-We release **laya-ara**, a fine-tune of [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual) (mmBERT-base with a Laya typed-decision head, ~322M) for Arabic *System One* inference: discrete `choice`, binary `noul`, and optional ordinal `score`. The model is not generative. Training uses official Laya RLCD on two RTX 3090 GPUs. The released weights correspond to the v48 mix (MASSIVE-ar, OSACT4-A, and a capped XNLI-ar sample). Because XNLI is CC BY-NC 4.0, these weights are **research / non-commercial** ([`NOTICE.md`](NOTICE.md)).
-
-## Results
-
-On a frozen evaluation protocol, 20-option MASSIVE-ar intent accuracy rises from 0.386 (stock) to **0.816**. 18-way scenario classification reaches 0.865; that is a different task and should not be reported as intent. XNLI-ar is 0.723 (stock 0.686). OSACT4-A macro-F1 is 0.862 (stock 0.726). Sentiment and hate-speech *transfer* from this mix is weak or negative. Short-list passage reranking (top-1 among *k*≤12) improves on seven Arabic sets; this is not corpus-level nDCG@10.
+**laya-ara** is a fine-tune of [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual) (mmBERT-base with a Laya typed-decision head, ~322M) for Arabic *System One* inference: discrete `choice`, binary `noul`, and optional ordinal `score`. It is not a generative language model. Training uses official Laya RLCD on two RTX 3090 GPUs. The released mix is MASSIVE-ar, OSACT4-A, and a capped XNLI-ar sample. XNLI is CC BY-NC 4.0, so these weights are **research / non-commercial** ([`NOTICE.md`](NOTICE.md)).
 
 ## Inference
 
-`laya` is the [ConvAI Laya](https://pypi.org/project/laya/) runtime (`pip install laya==0.3.4`). It is a typed-decision engine, not Transformers `AutoModel`. `laya.load` accepts a Hub id or a local directory that contains `model.safetensors`, `rl_agent_config.json`, `encoder/`, and `tokenizer/`. The Hub repo is **private**: pass a write/read token or `huggingface-cli login`.
+`laya` is the [ConvAI Laya](https://pypi.org/project/laya/) runtime (`pip install laya==0.3.4`), not Transformers `AutoModel`.
 
 ```bash
 pip install "laya==0.3.4"
-export USE_TF=0          # otherwise import can hang on a TensorFlow probe
-export HF_TOKEN=hf_...   # required while Wouze/laya-ara is private
+export USE_TF=0
+export HF_TOKEN=hf_...   # while Wouze/laya-ara is private
 ```
 
 ```python
@@ -51,56 +61,54 @@ out = agent.predict(
 print(out["answers"])
 ```
 
-Local weights: `laya.load("/path/to/artifacts/laya-ar-v48")`. Longer demo: [`examples/predict_triage.py`](examples/predict_triage.py). Scores: [`results/v48_all_benches.json`](results/v48_all_benches.json). Follow-on mixes: [`FINDINGS.md`](FINDINGS.md).
+Local weights: `laya.load("/path/to/artifacts/laya-ar-v48")`. Demo: [`examples/predict_triage.py`](examples/predict_triage.py). This card’s scores: [`results/nlu_benches.json`](results/nlu_benches.json).
 
 ## Method
 
 - **Base.** `laya-multilingual` (Apache-2.0). English `convaiinnovations/laya` is a different checkpoint.
 - **Objective.** Official Laya RLCD (policy gradient + soft cross-entropy, group size 4), DDP, fp16.
-- **Mix (released card).** MASSIVE-ar train questions, OSACT4 Subtask A, XNLI-ar cap. Hybrid temperature calibration (`choice:11+` floor 3.75).
-- **Protocol.** Identical frozen JSONL for stock and fine-tune. No generation. Question answering is sentence selection, not span EM/F1. Retrieval exams are pairwise relevance or listwise choice with *k*≤12.
+- **Mix.** MASSIVE-ar train, OSACT4 Subtask A, XNLI-ar cap. Hybrid temperature calibration (`choice:11+` floor 3.75).
+- **Protocol.** Identical frozen JSONL for stock and fine-tune. Question answering is sentence selection, not span EM/F1. Retrieval transfer is top-1 among *k*≤12, not corpus nDCG@10.
 
-## In-domain classification
+## Classification
 
-| Task | *n* | Stock | laya-ara |
-|---|---:|---:|---:|
-| MASSIVE-ar intent (20 options) | 2974 | 0.386 | **0.816** |
-| MASSIVE-ar scenario (18-way) | 2974 | 0.427 | **0.865** |
-| MASSIVE-ar hierarchical intent | 2694 | 0.536 | **0.893** |
-| XNLI-ar | 5010 | 0.686 | **0.723** |
-| OSACT4-A (macro-F1) | 1000 | 0.726 | **0.862** |
+| Task | *n* | Base | laya-ara | Δ rel. |
+|---|---:|---:|---:|---:|
+| MASSIVE-ar intent (20 options) | 2974 | 0.386 | **0.816** | +111% |
+| MASSIVE-ar scenario (18-way) | 2974 | 0.427 | **0.865** | +103% |
+| MASSIVE-ar hierarchical intent | 2694 | 0.536 | **0.893** | +67% |
+| XNLI-ar | 5010 | 0.686 | **0.723** | +5% |
+| OSACT4-A (macro-F1) | 1000 | 0.726 | **0.862** | +19% |
 
-Published stock MASSIVE-ar intent on the Laya harness is about 0.38–0.40. XNLI remains below typical AraBERT fine-tunes (~0.80).
+Published stock MASSIVE-ar intent on the Laya harness is about 0.38–0.40. XNLI remains below typical AraBERT fine-tunes (~0.80). Zero-shot AJGT and OSACT-HS decrease relative to stock. TyDiQA-ar sentence selection is 0.359 → 0.413.
 
-Zero-shot transfer on the same card: AJGT and OSACT-HS **decrease** relative to stock. TyDiQA-ar sentence selection is 0.359 → 0.413.
+## Short-list reranking (this card)
 
-## Short-list reranking
+No MIRACL train in this mix. Metric: top-1 among ≤12. The dedicated reranker is [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
 
-The released mix does **not** include MIRACL train. Metric: top-1 among ≤12 candidates.
+| Task | *n* | Base | laya-ara | Δ rel. |
+|---|---:|---:|---:|---:|
+| Mr.TyDi-ar | 2000 | 0.176 | **0.260** | +48% |
+| SadeemQuestion | 2089 | 0.168 | **0.242** | +44% |
+| MLQA-ar | 2000 | 0.133 | **0.214** | +61% |
+| MIRACL-ar (dev) | 2896 | 0.153 | **0.210** | +37% |
 
-| Task | *n* | Stock | laya-ara |
-|---|---:|---:|---:|
-| Mr.TyDi-ar | 2000 | 0.176 | **0.260** |
-| SadeemQuestion | 2089 | 0.168 | **0.242** |
-| MLQA-ar | 2000 | 0.133 | **0.214** |
-| MIRACL-ar (dev) | 2896 | 0.153 | **0.210** |
+All seven listwise files improve. Pairwise Wikipedia/BM25 relevance can still favor stock.
 
-All seven listwise files improve. Pairwise noul on human/BM25 Wikipedia negatives still favours stock.
+## Related models
 
-## Related cards
-
-This Hub page reports **laya-ara** only. Specialists do not replace these MASSIVE / XNLI / OSACT-A rows.
-
-| Card | Role |
+| Model | Role |
 |---|---|
-| **laya-ara** (this) | In-domain intent / NLI / offensive-A |
-| [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag) | k≤12 relevance / rerank (fatwa logs not released) |
+| **laya-ara** (this) | Arabic intent, NLI, offensive-language A |
+| [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag) | Arabic short-list relevance / rerank |
 
-Quote and triage stay local. Full comparison, including those runs: GitHub [`FINDINGS.md`](FINDINGS.md) and [`results/all_cards.json`](results/all_cards.json).
+## Contact
+
+Licensing, evaluation access, or collaboration: [Mohammad Alkhenizan on LinkedIn](https://www.linkedin.com/in/mohammad-alkhenizan-537623257).
 
 ## Limitations
 
-The model has no token-level NER or span-extraction head. Offensive-language F1 is a research score, not a moderation guarantee. Diglossia is unmeasured beyond MASSIVE (ar-SA MSA) and OSACT tweets. Full tables and citations: [`FINDINGS.md`](FINDINGS.md), [`citations.bib`](citations.bib).
+No token-level NER or span-extraction head. Offensive-language F1 is a research score, not a moderation guarantee. Diglossia is unmeasured beyond MASSIVE (ar-SA MSA) and OSACT tweets. Citations: [`citations.bib`](citations.bib).
 
 ```bibtex
 @misc{alkhenizan2026layaara,

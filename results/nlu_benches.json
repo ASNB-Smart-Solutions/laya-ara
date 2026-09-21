@@ -5,7 +5,12 @@
   "model": "artifacts/laya-ar-v48",
   "base": "convaiinnovations/laya-multilingual",
   "scored": "2026-09-21",
-  "protocol": "Same frozen Laya JSONL for stock and v48. Not generation. RAG rows here are this card’s transfer (no MIRACL train).",
+  "protocol": "Same frozen Laya JSONL for stock and v48. Relative lift = (ft-stock)/stock.",
+  "headlines": {
+    "intent_20opt": {"stock": 0.386, "laya_ara": 0.816, "rel_pct": 111},
+    "scenario": {"stock": 0.427, "laya_ara": 0.865, "rel_pct": 103},
+    "osact4_a_f1": {"stock": 0.726, "laya_ara": 0.862, "rel_pct": 19}
+  },
   "locked": {
     "massive_ar_intent_20opt": {"n": 2974, "stock": 0.386, "laya_ara": 0.816},
     "massive_ar_scenario": {"n": 2974, "stock": 0.427, "laya_ara": 0.865},

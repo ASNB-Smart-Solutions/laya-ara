@@ -5,18 +5,19 @@ type: software
 authors:
   - family-names: Alkhenizan
     given-names: Mohammad
+    website: https://www.linkedin.com/in/mohammad-alkhenizan-537623257
 abstract: >-
   laya-ara is a research fine-tune of convaiinnovations/laya-multilingual
   for Arabic typed decisions (choice, score, noul) using official Laya
-  RLCD. The released mix includes facebook/xnli (CC BY-NC 4.0). MASSIVE-ar
-  20-option intent accuracy is 0.816 versus 0.386 stock.
+  RLCD. MASSIVE-ar 20-option intent rises 0.386 to 0.816 (+111% relative
+  to stock). The mix includes facebook/xnli (CC BY-NC 4.0).
 keywords:
   - arabic
   - nlu
-  - laya
   - intent-classification
-  - xnli
-  - osact
+  - natural-language-inference
+  - laya
+  - massive
 license: OTHER
 date-released: "2026-09-21"
 repository-code: "https://github.com/ASNB-Smart-Solutions/laya-ara"

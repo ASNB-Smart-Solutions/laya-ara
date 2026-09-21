@@ -23,6 +23,10 @@ This repository is **not** TypeSafe Jev and **not** English `convaiinnovations/l
 
 Cite [`CITATION.cff`](CITATION.cff) and the dataset paper for any reported row ([`citations.bib`](citations.bib)). Encoder: Marone et al. 2025 (mmBERT). Head: ConvAI `laya-multilingual`. Experimental note: [`FINDINGS.md`](FINDINGS.md).
 
-## Anti-claims
+## Contact
 
-Do not describe this model as: a chat LLM, a generative RAG writer, a token-NER tagger, a span-QA system, a full-corpus MIRACL retriever, a safe unattended moderator, or TypeSafe Jev.
+Licensing or collaboration: [Mohammad Alkhenizan on LinkedIn](https://www.linkedin.com/in/mohammad-alkhenizan-537623257).
+
+## Scope
+
+This model is a typed-decision engine, not a chat LLM, span-QA system, or full-corpus retriever.

@@ -36,7 +36,7 @@ def copy_ckpt(src: Path, dest: Path) -> None:
     for extra in ("temperatures_train.json", "train_report.json"):
         if (src / extra).is_file():
             shutil.copy2(src / extra, dest / extra)
-    for doc in ("NOTICE.md", "LICENSE", "CITATION.cff", "citations.bib", "FINDINGS.md", "UPLOAD.md"):
+    for doc in ("NOTICE.md", "LICENSE", "CITATION.cff", "citations.bib", "FINDINGS.md", "RESULTS.md", "UPLOAD.md"):
         shutil.copy2(ROOT / doc, dest / doc)
     header = (ROOT / "huggingface.yaml").read_text()
     body = (ROOT / "README.md").read_text()

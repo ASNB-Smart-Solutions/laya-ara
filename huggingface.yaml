@@ -6,6 +6,7 @@ license: other
 license_name: xnli-cc-by-nc
 license_link: https://creativecommons.org/licenses/by-nc/4.0/legalcode
 base_model: convaiinnovations/laya-multilingual
+base_model_relation: finetune
 datasets:
   - AmazonScience/massive
   - facebook/xnli

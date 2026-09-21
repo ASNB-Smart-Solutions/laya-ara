@@ -1,6 +1,6 @@
 # Additional experiments
 
-Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released NLU card is the v48 mix. Scores: [`results/v48_all_benches.json`](results/v48_all_benches.json). RAG sibling: [`../laya-ara-rag`](../laya-ara-rag).
+Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released NLU card is the v48 mix. Tables: [`RESULTS.md`](RESULTS.md). JSON: [`results/nlu_benches.json`](results/nlu_benches.json) · [`results/all_cards.json`](results/all_cards.json). RAG sibling: [`../laya-ara-rag`](../laya-ara-rag).
 
 ## Setup
 
@@ -60,3 +60,5 @@ Authored Gulf lines (1,200 train / 200 hold, seed 42). Not operational tickets. 
 ## Limitations (repeated)
 
 No span extraction, no token NER, no full-corpus IR. XNLI in the released mix restricts commercial use. Cite dataset papers in [`citations.bib`](citations.bib) when reporting a row.
+
+Contact: [Mohammad Alkhenizan on LinkedIn](https://www.linkedin.com/in/mohammad-alkhenizan-537623257).

@@ -1,6 +1,18 @@
 {
   "scored": "2026-09-21",
-  "protocol": "Frozen Laya JSONL. Not generation. RAG is pairwise noul or listwise choice k<=12, not nDCG@10.",
+  "protocol": "Frozen Laya JSONL. Not generation. RAG is pairwise noul or listwise choice k<=12, not nDCG@10. Relative lift = (ft-stock)/stock.",
+  "headlines": {
+    "laya_ara": {
+      "massive_intent_20opt": {"stock": 0.386, "value": 0.816, "rel_pct": 111},
+      "massive_scenario": {"stock": 0.427, "value": 0.865, "rel_pct": 103},
+      "osact4_a_f1": {"stock": 0.726, "value": 0.862, "rel_pct": 19}
+    },
+    "laya_ara_rag": {
+      "miracl_rerank": {"stock": 0.153, "value": 0.588, "rel_pct": 284, "times": 3.84},
+      "mlqa_rerank": {"stock": 0.133, "value": 0.582, "rel_pct": 338, "times": 4.38},
+      "in_domain_pair": {"stock": 0.812, "value": 0.938, "rel_pct": 16}
+    }
+  },
   "cards": {
     "laya-ara": {
       "hub": "https://huggingface.co/Wouze/laya-ara",
