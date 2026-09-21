@@ -3,8 +3,8 @@ title: "laya-ara"
 message: "If you use this model, please cite it and the evaluation sets you report."
 type: software
 authors:
-  - family-names: Radhi
-    given-names: Abdulrahman
+  - family-names: Alkhenizan
+    given-names: Mohammad
 abstract: >-
   Fine-tune of convaiinnovations/laya-multilingual for Arabic typed
   decisions (choice / score / noul). Research weights: the v48 mix
@@ -25,8 +25,8 @@ preferred-citation:
   type: generic
   title: "laya-ara"
   authors:
-    - family-names: Radhi
-      given-names: Abdulrahman
+    - family-names: Alkhenizan
+      given-names: Mohammad
   year: 2026
   notes: "Fine-tune of convaiinnovations/laya-multilingual. Research / non-commercial (XNLI CC BY-NC in the mix)."
 references:
