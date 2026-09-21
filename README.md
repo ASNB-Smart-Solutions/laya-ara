@@ -2,8 +2,8 @@
 language:
   - ar
 license: other
-license_name: Research (XNLI CC BY-NC in the v48 mix)
-license_link: NOTICE.md
+license_name: xnli-cc-by-nc
+license_link: https://creativecommons.org/licenses/by-nc/4.0/legalcode
 base_model: convaiinnovations/laya-multilingual
 datasets:
   - AmazonScience/massive
