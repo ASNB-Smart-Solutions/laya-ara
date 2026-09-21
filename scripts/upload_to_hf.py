@@ -38,7 +38,7 @@ def copy_ckpt(src: Path, dest: Path) -> None:
             shutil.copy2(src / extra, dest / extra)
     for doc in ("README.md", "NOTICE.md", "LICENSE", "CITATION.cff", "citations.bib", "FINDINGS.md", "UPLOAD.md"):
         shutil.copy2(ROOT / doc, dest / doc)
-    for folder in ("results", "examples"):
+    for folder in ("results", "examples", "assets"):
         target = dest / folder
         if target.exists():
             shutil.rmtree(target)

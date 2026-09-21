@@ -72,6 +72,10 @@ model-index:
 
 # laya-ara
 
+<p align="center">
+  <img src="assets/logo.jpg" alt="laya-ara" width="280">
+</p>
+
 Arabic typed decisions (`choice` / `score` / `noul`) on [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual). Author: **Mohammad Alkhenizan**.
 
 Not a chat model. Not a retriever. Not TypeSafe Jev.
