@@ -14,7 +14,7 @@
       {"task": "mlqa_rerank", "kind": "transfer", "n": 2000, "stock": 0.133, "rag_ft": 0.507, "delta": 0.375},
       {"task": "xpqa_rerank", "kind": "transfer", "n": 750, "stock": 0.213, "rag_ft": 0.495, "delta": 0.281}
     ],
-    "do_not_share": [
+    "limitations": [
       "ASTD quote 0.694 acc as balanced 4-way (F1 0.404)",
       "laya-ara-rag 0.588 as nDCG@10 or a retriever",
       "fatwa corpus / search logs / gold questions",
@@ -56,7 +56,7 @@
     "xpqa_rerank_test": {"n": 750, "negs": "random answer", "stock": 0.2133, "v48": 0.2813, "delta": 0.0680}
   },
   "laya_ara_rag": {
-    "note": "Public RAG card. artifacts/laya-ara-rag -> laya-ar-ameen. Unreleased fatwa logs + MIRACL replay + 2k MASSIVE. No XNLI. Still k<=12. Logs not in this repo.",
+    "note": "Public RAG card. In-house retrieval logs are not in this repository. MIRACL replay + 2k MASSIVE. No XNLI. Still k<=12.",
     "checkpoint": "artifacts/laya-ara-rag",
     "n_train": 35591,
     "pair": {

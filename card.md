@@ -35,7 +35,6 @@ Full tables: [`RESULTS.md`](https://huggingface.co/Wouze/laya-ara/blob/main/RESU
 ```bash
 pip install "laya==0.3.4"
 export USE_TF=0
-export HF_TOKEN=hf_...   # while Wouze/laya-ara is private
 ```
 
 ```python

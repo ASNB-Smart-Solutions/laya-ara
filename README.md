@@ -55,7 +55,6 @@ Mintaka entity ranking does not improve. Write-up: [`rag/README.md`](rag/README.
 ```bash
 pip install "laya==0.3.4"
 export USE_TF=0
-export HF_TOKEN=hf_...   # while the Hub repos are private
 ```
 
 ```python

@@ -1,6 +1,6 @@
 # Upload to Hugging Face
 
-Default public name is **`laya-ara-rag`**. Local weights: `artifacts/laya-ara-rag` (symlink to `artifacts/laya-ar-ameen`).
+Default public name is **`laya-ara-rag`**. Local weights: `artifacts/laya-ara-rag`.
 
 This **replaces** the MIRACL-only specialist as the Hub RAG card. Do not upload `artifacts/laya-ar-rag` under this name.
 
@@ -19,7 +19,7 @@ GitHub `README.md` has the tables and **no** Hub YAML. Upload prepends `huggingf
 
 **Never upload**
 
-- `ameen-training-export/`
+- the in-house retrieval export
 - `data/processed/**` (fatwa JSONL, gold questions, teacher lists)
 - `*.pt` item caches
 - any `lists.jsonl` / `fatwas.jsonl` / `evaluation_questions.json`
@@ -71,7 +71,7 @@ python scripts/upload_to_hf.py \
 | Local dir | Public name | Upload if |
 |---|---|---|
 | `artifacts/laya-ar-v48` | **laya-ara** | NLU card (XNLI = NC) |
-| `artifacts/laya-ara-rag` (`laya-ar-ameen`) | **laya-ara-rag** | this card |
+| `artifacts/laya-ara-rag` | **laya-ara-rag** | this card |
 | `artifacts/laya-ar-rag` | — | ablation only; do not publish as laya-ara-rag |
 | `artifacts/laya-ar-quote` | laya-ara-quote | sentiment / hate |
 | `artifacts/laya-ar-triage` | laya-ara-triage | synthetic Gulf demo |

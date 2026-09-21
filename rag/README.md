@@ -38,7 +38,6 @@ The mix continues from a MIRACL-ar Wikipedia specialist, then adds in-house Arab
 ```bash
 pip install "laya==0.3.4"
 export USE_TF=0
-export HF_TOKEN=hf_...   # while Wouze/laya-ara-rag is private
 ```
 
 ```python

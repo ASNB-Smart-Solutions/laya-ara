@@ -10,7 +10,7 @@ os.environ.setdefault("USE_TF", "0")
 import laya
 
 # pip install laya==0.3.4
-# Private Hub dump needs HF_TOKEN. Local: LAYA_AR_MODEL=/path/to/artifacts/laya-ar-v48
+# Local override: LAYA_AR_MODEL=/path/to/artifacts/laya-ar-v48
 MODEL = os.environ.get("LAYA_AR_MODEL", "Wouze/laya-ara")
 
 STATE = {

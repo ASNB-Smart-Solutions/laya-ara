@@ -44,7 +44,7 @@ The public RAG name is the in-house + MIRACL merge, not the Wikipedia-only 11,99
 | PublicHealthQA-ar | 86 | transfer | 0.116 | 0.244 | 0.326 | **0.488** |
 | Mintaka-ar | 2203 | transfer | 0.285 | 0.311 | **0.403** | 0.388 |
 
-Pairwise (`noul`): MIRACL 0.688 → **0.788**; Sadeem 0.837 → **0.941**. Mintaka / MLQA / XPQA pairwise still favor this NLU card (0.616 / 0.784 / 0.697). In-domain sealed fatwa pair 0.812 → **0.938** (queries not released). Do not advertise a 21-row listwise as 100%. Full grid: [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json).
+Pairwise (`noul`): MIRACL 0.688 → **0.788**; Sadeem 0.837 → **0.941**. Mintaka / MLQA / XPQA pairwise still favor this NLU card (0.616 / 0.784 / 0.697). In-domain sealed pair 0.812 → **0.938**. The 21-query listwise set is too small to report as a headline. Full grid: [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json).
 
 ## Synthetic triage
 

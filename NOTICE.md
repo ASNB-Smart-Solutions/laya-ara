@@ -17,7 +17,7 @@ This repository is **not** TypeSafe Jev and **not** English `convaiinnovations/l
 
 **laya-ara-quote** is trained **without XNLI** (MASSIVE + OSACT-A + OSACT-HS + AJGT + LABR + ASTD remainder). Commercial-friendlier than **laya-ara**. It wins the sentiment/hate **fine-tunes** vs stock and laya-ara; it does **not** beat laya-ara on MASSIVE / XNLI / OSACT-A. Pick the card by task. Do not treat quote XNLI 0.697 as an NLI train result (zero-shot).
 
-**laya-ara-rag** is **without XNLI**. It is the fatwa-search merge (in-house logs **not released**) plus a MIRACL-ar train replay and a 2k MASSIVE cap. Use for k≤12 relevance. Do not call it a retriever. Do not upload the fatwa dump next to those weights. It does not replace laya-ara on the locked suite. Card: sibling repo `laya-ara-rag`.
+**laya-ara-rag** is **without XNLI**. It continues from a MIRACL-ar specialist on in-house Arabic retrieval logs (not redistributed) plus a MIRACL replay and a 2k MASSIVE cap. It ranks a short list. It does not replace laya-ara on MASSIVE / XNLI / OSACT-A. Write-up: [`rag/`](rag/). Hub: [`Wouze/laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
 
 ## Citation
 

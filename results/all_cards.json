@@ -26,11 +26,11 @@
       "github": "https://github.com/ASNB-Smart-Solutions/laya-ara/tree/master/rag",
       "local": "artifacts/laya-ara-rag",
       "xnli": false,
-      "role": "Short-list relevance / rerank. Fatwa logs not released."
+      "role": "Short-list relevance and rerank. In-house logs are not redistributed."
     }
   },
   "data_audit_laya_ara_rag": {
-    "export": "ameen-training-export (gitignored)",
+    "export": "in-house retrieval export, not in this repository",
     "corpus_fatwas": 31018,
     "scholars": {"ibn_baz": 24119, "ibn_uthaymin": 6899},
     "lists": 9307,
