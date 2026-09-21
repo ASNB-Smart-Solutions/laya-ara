@@ -21,7 +21,7 @@ This repository is **not** TypeSafe Jev and **not** English `convaiinnovations/l
 
 ## Citation
 
-Use [`CITATION.cff`](CITATION.cff) and [`citations.bib`](citations.bib). If you report a dataset score, cite that paper as well as this checkpoint. Encoder: Marone et al. 2025 (mmBERT). Head: ConvAI `laya-multilingual`. What to share vs not: [`FINDINGS.md`](FINDINGS.md).
+Cite [`CITATION.cff`](CITATION.cff) and the dataset paper for any reported row ([`citations.bib`](citations.bib)). Encoder: Marone et al. 2025 (mmBERT). Head: ConvAI `laya-multilingual`. Experimental note: [`FINDINGS.md`](FINDINGS.md).
 
 ## Anti-claims
 

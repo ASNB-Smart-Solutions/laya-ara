@@ -6,9 +6,10 @@ authors:
   - family-names: Alkhenizan
     given-names: Mohammad
 abstract: >-
-  Fine-tune of convaiinnovations/laya-multilingual for Arabic typed
-  decisions (choice / score / noul). Research weights: the v48 mix
-  includes facebook/xnli (CC BY-NC 4.0).
+  laya-ara is a research fine-tune of convaiinnovations/laya-multilingual
+  for Arabic typed decisions (choice, score, noul) using official Laya
+  RLCD. The released mix includes facebook/xnli (CC BY-NC 4.0). MASSIVE-ar
+  20-option intent accuracy is 0.816 versus 0.386 stock.
 keywords:
   - arabic
   - laya

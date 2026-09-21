@@ -1,47 +1,59 @@
-# Findings after three specialist tracks
+# Additional experiments
 
-**laya-ara** (v48 weights) remains the **public MASSIVE / XNLI / OSACT-A** card (research / NC). The later tracks did not beat that locked suite. They produced **three other checkpoints**, each winning a different exam.
+Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released card is the v48 mix. Scores: [`results/v48_all_benches.json`](results/v48_all_benches.json).
 
-| Checkpoint | Mix | Use | Do not use for |
-|---|---|---|---|
-| **laya-ara** (`artifacts/laya-ar-v48`) | MASSIVE + OSACT-A + capped XNLI | Locked NLU. Headline: MASSIVE-ar **20-opt intent 0.386 → 0.816** | Sentiment/hate (AJGT, OSACT-HS got worse). Commercial dump (XNLI CC BY-NC) |
-| **laya-ara-quote** (`artifacts/laya-ar-quote`) | MASSIVE + OSACT-A + OSACT-HS + AJGT + LABR + ASTD remainder. **No XNLI** | Commercial-friendlier sentiment / hate **fine-tunes** | Replacing laya-ara on MASSIVE / XNLI. ASTD 0.694 acc (F1 0.404) |
-| **laya-ara-rag** (`artifacts/laya-ar-rag`) | MIRACL-ar **train** pair+rerank + 4k MASSIVE. **No XNLI** | Arabic k≤12 relevance / rerank | First-stage retrieval. Official MIRACL nDCG@10 |
-| **laya-ara-triage** (`artifacts/laya-ar-triage`) | 1200 authored Gulf lines from v48 | Product smoke: churn 0.03 → 0.91 | Production ticket accuracy. Urgency is still weak |
+## Setup
 
-Same frozen JSONL for every row. Not generation. RAG is **top-1 among ≤12**, not nDCG@10.
+After the released mix, we trained three one-epoch specialists from stock (quote, rag-ft) or from v48 (triage). Official test and hold-out files were not rebuilt. RAG remains top-1 among *k*≤12, not nDCG@10 over a corpus.
 
-## What we learned
+| Checkpoint | Items | XNLI | Role |
+|---|---:|---|---|
+| laya-ara (released) | multi-cycle mix | yes (capped) | In-domain MASSIVE / OSACT-A / XNLI |
+| laya-ara-quote | 56,070 | no | Sentiment and hate fine-tune |
+| laya-ara-rag | 11,995 | no | MIRACL-ar train pair + listwise; 4k MASSIVE |
+| laya-ara-triage | 1,200 + 2k MASSIVE | no | Synthetic Gulf support heads |
 
-1. **Specialists, not a better v48.** One more XNLI cycle does not move the public story. Training on the bench you want to quote does.
-2. **Listwise RAG transfers; pairwise does not always.** After MIRACL train only, all seven reranks rose. Mintaka and MLQA **pairwise** fell.
-3. **Quote-mix FT is not transfer.** AJGT / LABR / ASTD / OSACT-HS train splits were in the mix. Official tests/holds stayed sealed.
-4. **Synthetic triage can fix churn, not urgency.** Do not cite hold200 as real-ticket scores.
+## Classification specialists
 
-## Shareable RAG-ft (second table)
+Quote-mix includes the *training* splits of AJGT, LABR, ASTD (minus a frozen 1,500 hold-out), and OSACT-HS. Gains on those tests are **in-domain**, not zero-shot transfer.
 
-Stock vs `laya-ara-rag`. MIRACL-ar **dev** is in-family (train was MIRACL). The other rows were **not** in the mix.
+| Task | *n* | Kind | Stock | laya-ara | quote |
+|---|---:|---|---:|---:|---:|
+| MASSIVE-ar scenario | 2974 | in-mix | 0.427 | **0.865** | 0.822 |
+| XNLI-ar | 5010 | quote: zero-shot | 0.686 | **0.723** | 0.697 |
+| OSACT4-A (acc / F1) | 1000 | in-mix | 0.844 / 0.726 | **0.920 / 0.862** | 0.901 / 0.823 |
+| OSACT4-HS (acc / F1) | 1000 | fine-tune | 0.932 / 0.655 | 0.875 / 0.645 | **0.963 / 0.677** |
+| AJGT | 360 | fine-tune | 0.833 | 0.756 | **0.875** |
+| LABR binary | 2348 | fine-tune | 0.759 | 0.766 | **0.834** |
+| ASTD hold (acc / F1) | 1500 | fine-tune | 0.295 / 0.286 | 0.326 / 0.297 | **0.694 / 0.404** |
 
-| Task | n | Kind | Stock | rag-ft | Δ | Cite |
-|---|---:|---|---:|---:|---:|---|
-| MIRACL-ar rerank (dev) | 2896 | in-family | 0.153 | **0.536** | +38.3 | Zhang et al. 2023 |
-| Mr.TyDi-ar rerank | 2000 | transfer | 0.176 | **0.610** | +43.5 | Zhang et al. 2021 |
-| SadeemQuestion rerank | 2089 | transfer | 0.168 | **0.781** | +61.3 | Sadeem 2024 |
-| MLQA-ar rerank | 2000 | transfer | 0.133 | **0.507** | +37.5 | Lewis et al. 2020 |
-| XPQA-ar rerank | 750 | transfer | 0.213 | **0.495** | +28.1 | Shen et al. 2023 |
+ASTD accuracy 0.694 with macro-F1 0.404 indicates majority-class improvement, not balanced four-way sentiment. Quote XNLI 0.697 is zero-shot (XNLI was withheld).
 
-Pairwise once, not as the hero: MIRACL pair 0.688 → **0.758**. Mintaka / MLQA pair went **down**.
+## Reranking specialist
 
-Do not post 0.536 or 0.781 as a retriever.
+MIRACL-ar **dev** is in-family (train was MIRACL). The remaining listwise sets were not in the mix.
 
-## Quote-mix (footnote, not a swap)
+| Task | *n* | Kind | Stock | laya-ara | rag-ft |
+|---|---:|---|---:|---:|---:|
+| MIRACL-ar rerank (dev) | 2896 | in-family | 0.153 | 0.210 | **0.536** |
+| Mr.TyDi-ar | 2000 | transfer | 0.176 | 0.260 | **0.610** |
+| SadeemQuestion | 2089 | transfer | 0.168 | 0.242 | **0.781** |
+| MLQA-ar | 2000 | transfer | 0.133 | 0.214 | **0.507** |
+| XPQA-ar | 750 | transfer | 0.213 | 0.281 | **0.495** |
 
-`laya-ara-quote`, 1 epoch from stock, no XNLI. **Fine-tune**, not zero-shot.
+Pairwise noul is mixed: MIRACL pair 0.688 → 0.758; Mintaka and MLQA pairwise **decrease**. Listwise transfer does not imply pairwise transfer. Sadeem rerank ECE 0.468: the head is over-confident on easy random negatives.
 
-- AJGT 0.833 → **0.875** · LABR 0.759 → **0.834** · OSACT-HS 0.932 → **0.963** (F1 0.655 → **0.677**)
-- Loses MASSIVE 0.865 → 0.822 and XNLI 0.723 → 0.697 vs v48
-- ASTD hold acc 0.694 / F1 **0.404** — majority-class, not balanced 4-way
+## Synthetic triage
 
-## Machine-readable
+Authored Gulf lines (1,200 train / 200 hold, seed 42). Not operational tickets. Smoke-line churn confidence 0.03 → 0.91. Hold-out: queue accuracy 0.75, churn F1 0.91, urgency nearest-class 0.33.
 
-[`results/v48_all_benches.json`](results/v48_all_benches.json) keys: `locked`, `quote_mix`, `rag`, `rag_ft`, `triage_synthetic`.
+## Discussion
+
+1. Additional cycles of the same MASSIVE+XNLI mix change locked scores by tenths of a point. Task-matched data moves the corresponding metric.
+2. Listwise short-list ranking transfers more readily than pairwise relevance after MIRACL training.
+3. In-domain sentiment fine-tuning is not a substitute for the released MASSIVE card.
+4. Synthetic ordinal labels are insufficient for urgency.
+
+## Limitations (repeated)
+
+No span extraction, no token NER, no full-corpus IR. XNLI in the released mix restricts commercial use. Cite dataset papers in [`citations.bib`](citations.bib) when reporting a row.
