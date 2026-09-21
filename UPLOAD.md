@@ -60,7 +60,7 @@ python scripts/upload_to_hf.py \
 - `base_model: convaiinnovations/laya-multilingual`
 - Anti-claims section not deleted
 - Example snippet uses `laya.load`, not `AutoModelForCausalLM`
-- `CITATION.cff` + `citations.bib` + `FINDINGS.md` present; model-index metrics match `results/v48_all_benches.json`
+- `CITATION.cff` + `citations.bib` + `FINDINGS.md` present; model-index metrics match `results/nlu_benches.json`
 
 ## 5. Later checkpoints (training repo)
 

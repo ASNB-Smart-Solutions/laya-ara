@@ -1,6 +1,6 @@
 # Additional experiments
 
-Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released NLU card is the v48 mix. Tables: [`RESULTS.md`](RESULTS.md). JSON: [`results/nlu_benches.json`](results/nlu_benches.json) · [`results/all_cards.json`](results/all_cards.json). RAG sibling: [`../laya-ara-rag`](../laya-ara-rag).
+Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released NLU card is the v48 mix. Tables: [`RESULTS.md`](RESULTS.md). JSON: [`nlu_benches.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/nlu_benches.json) · [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json). RAG sibling: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
 
 ## Setup
 
@@ -10,7 +10,7 @@ After the released mix, we trained three one-epoch specialists from stock (quote
 |---|---:|---|---|
 | laya-ara (released) | multi-cycle mix | yes (capped) | In-domain MASSIVE / OSACT-A / XNLI |
 | laya-ara-quote | 56,070 | no | Sentiment and hate fine-tune |
-| **laya-ara-rag** | **35,591** | no | Fatwa search logs (unreleased) + MIRACL replay; [sibling card](../laya-ara-rag) |
+| **laya-ara-rag** | **35,591** | no | In-house retrieval logs + MIRACL replay; [sibling card](https://huggingface.co/Wouze/laya-ara-rag) |
 | MIRACL-only ablation | 11,995 | no | Wikipedia pair + listwise; not the Hub RAG name |
 | laya-ara-triage | 1,200 + 2k MASSIVE | no | Synthetic Gulf support heads |
 
@@ -32,7 +32,7 @@ ASTD accuracy 0.694 with macro-F1 0.404 indicates majority-class improvement, no
 
 ## Reranking specialist (**laya-ara-rag**)
 
-The public RAG name is now the fatwa+MIRACL merge, not the Wikipedia-only 11,995-item run. Full tables: [`../laya-ara-rag`](../laya-ara-rag). Fatwa logs are described there and **not** uploaded.
+The public RAG name is the in-house + MIRACL merge, not the Wikipedia-only 11,995-item run. Full tables: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag).
 
 | Task | *n* | Kind | Stock | laya-ara | MIRACL-only | **laya-ara-rag** |
 |---|---:|---|---:|---:|---:|---:|
@@ -44,7 +44,7 @@ The public RAG name is now the fatwa+MIRACL merge, not the Wikipedia-only 11,995
 | PublicHealthQA-ar | 86 | transfer | 0.116 | 0.244 | 0.326 | **0.488** |
 | Mintaka-ar | 2203 | transfer | 0.285 | 0.311 | **0.403** | 0.388 |
 
-Pairwise (`noul`): MIRACL 0.688 → **0.788**; Sadeem 0.837 → **0.941**. Mintaka / MLQA / XPQA pairwise still favor this NLU card (0.616 / 0.784 / 0.697). In-domain sealed fatwa pair 0.812 → **0.938** (queries not released). Do not advertise a 21-row listwise as 100%. Full grid: [`results/all_cards.json`](results/all_cards.json).
+Pairwise (`noul`): MIRACL 0.688 → **0.788**; Sadeem 0.837 → **0.941**. Mintaka / MLQA / XPQA pairwise still favor this NLU card (0.616 / 0.784 / 0.697). In-domain sealed fatwa pair 0.812 → **0.938** (queries not released). Do not advertise a 21-row listwise as 100%. Full grid: [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json).
 
 ## Synthetic triage
 

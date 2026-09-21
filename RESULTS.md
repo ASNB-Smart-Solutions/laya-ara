@@ -2,7 +2,7 @@
 
 Frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. Relative lift is *(model − stock) / stock*.
 
-Card: [`README.md`](README.md) · JSON: [`results/nlu_benches.json`](results/nlu_benches.json) · all models: [`results/all_cards.json`](results/all_cards.json) · RAG: [`../laya-ara-rag/RESULTS.md`](../laya-ara-rag/RESULTS.md)
+Card: [`README.md`](README.md) · JSON: [`nlu_benches.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/nlu_benches.json) · all models: [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json) · RAG: [`laya-ara-rag/RESULTS.md`](https://huggingface.co/Wouze/laya-ara-rag/blob/main/RESULTS.md)
 
 ## Highlights vs base
 

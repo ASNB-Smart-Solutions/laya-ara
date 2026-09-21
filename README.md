@@ -22,11 +22,11 @@ Relative lift is *(fine-tune − stock) / stock* on the same frozen Laya templat
 | Offensive language, macro-F1 (OSACT4-A) | 1000 | 0.726 | **0.862** | **+19%** |
 | Natural language inference (XNLI-ar) | 5010 | 0.686 | **0.723** | +5% |
 
-Full tables, specialists, and JSON: [`RESULTS.md`](RESULTS.md) · [`results/all_cards.json`](results/all_cards.json).
+Full tables: [`RESULTS.md`](https://huggingface.co/Wouze/laya-ara/blob/main/RESULTS.md). This card’s JSON: [`nlu_benches.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/nlu_benches.json). All cards: [`all_cards.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/all_cards.json).
 
 ## Abstract
 
-**laya-ara** is a fine-tune of [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual) (mmBERT-base with a Laya typed-decision head, ~322M) for Arabic *System One* inference: discrete `choice`, binary `noul`, and optional ordinal `score`. It is not a generative language model. Training uses official Laya RLCD on two RTX 3090 GPUs. The released mix is MASSIVE-ar, OSACT4-A, and a capped XNLI-ar sample. XNLI is CC BY-NC 4.0, so these weights are **research / non-commercial** ([`NOTICE.md`](NOTICE.md)).
+**laya-ara** is a fine-tune of [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual) (mmBERT-base with a Laya typed-decision head, ~322M) for Arabic *System One* inference: discrete `choice`, binary `noul`, and optional ordinal `score`. It is not a generative language model. Training uses official Laya RLCD on two RTX 3090 GPUs. The released mix is MASSIVE-ar, OSACT4-A, and a capped XNLI-ar sample. XNLI is CC BY-NC 4.0, so these weights are **research / non-commercial** ([`NOTICE.md`](https://huggingface.co/Wouze/laya-ara/blob/main/NOTICE.md)).
 
 ## Inference
 
@@ -61,7 +61,7 @@ out = agent.predict(
 print(out["answers"])
 ```
 
-Local weights: `laya.load("/path/to/artifacts/laya-ar-v48")`. Demo: [`examples/predict_triage.py`](examples/predict_triage.py). This card’s scores: [`results/nlu_benches.json`](results/nlu_benches.json).
+Local weights: `laya.load("/path/to/artifacts/laya-ar-v48")`. Demo: [`examples/predict_triage.py`](https://huggingface.co/Wouze/laya-ara/blob/main/examples/predict_triage.py). This card’s scores: [`nlu_benches.json`](https://huggingface.co/Wouze/laya-ara/blob/main/results/nlu_benches.json).
 
 ## Method
 
@@ -108,7 +108,7 @@ Licensing, evaluation access, or collaboration: [Mohammad Alkhenizan on LinkedIn
 
 ## Limitations
 
-No token-level NER or span-extraction head. Offensive-language F1 is a research score, not a moderation guarantee. Diglossia is unmeasured beyond MASSIVE (ar-SA MSA) and OSACT tweets. Citations: [`citations.bib`](citations.bib).
+No token-level NER or span-extraction head. Offensive-language F1 is a research score, not a moderation guarantee. Diglossia is unmeasured beyond MASSIVE (ar-SA MSA) and OSACT tweets. Citations: [`citations.bib`](https://huggingface.co/Wouze/laya-ara/blob/main/citations.bib).
 
 ```bibtex
 @misc{alkhenizan2026layaara,
