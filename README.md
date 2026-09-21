@@ -92,7 +92,7 @@ Subsequent one-epoch specialists do not dominate the released card on MASSIVE / 
 | Checkpoint | Training distribution | Principal result | Scope |
 |---|---|---|---|
 | quote (no XNLI) | MASSIVE, OSACT-A/HS, AJGT, LABR, ASTD remainder | AJGT 0.875; LABR 0.834 | In-domain fine-tune. MASSIVE falls to 0.822. ASTD accuracy 0.694 vs macro-F1 0.404 |
-| rag-ft (no XNLI) | MIRACL-ar train + 4k MASSIVE | MIRACL rerank 0.153 → 0.536 | Still *k*≤12. Not first-stage retrieval |
+| **laya-ara-rag** (no XNLI) | Unreleased fatwa search logs + MIRACL replay | MIRACL rerank 0.153 → **0.588**; sealed fatwa pair 0.812 → **0.938** | Still *k*≤12. Logs not in the repo. [Sibling card](https://huggingface.co/Wouze/laya-ara-rag) |
 | triage | 1.2k authored Gulf lines | Smoke churn 0.03 → 0.91 | Synthetic labels. Urgency remains weak |
 
 ## Limitations

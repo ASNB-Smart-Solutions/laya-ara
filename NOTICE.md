@@ -13,11 +13,11 @@ This repository is **not** TypeSafe Jev and **not** English `convaiinnovations/l
 | AmazonScience/massive ar-SA | Train + eval | CC BY 4.0 | Attribution required. Commercial OK. |
 | OSACT4 Offensive Subtask A | Train + eval | Shared-task / research | Cite OSACT4. Confirm redistribution. |
 | facebook/xnli Arabic | Train (capped) + eval | **CC BY-NC 4.0** | **v48 weights are research / non-commercial.** Do not ship as a commercial product dump. Do not upload raw XNLI text. |
-| MIRACL-ar, Mr.TyDi, Sadeem, MLQA, XPQA, Mintaka, PublicHealthQA | Eval (all); MIRACL-ar **train** is in `laya-ara-rag` | See each dataset card | PublicHealthQA is CC BY-NC-SA (eval only). |
+| MIRACL-ar, Mr.TyDi, Sadeem, MLQA, XPQA, Mintaka, PublicHealthQA | Eval (all); MIRACL-ar **train** is replayed in `laya-ara-rag` | See each dataset card | PublicHealthQA is CC BY-NC-SA (eval only). |
 
 **laya-ara-quote** is trained **without XNLI** (MASSIVE + OSACT-A + OSACT-HS + AJGT + LABR + ASTD remainder). Commercial-friendlier than **laya-ara**. It wins the sentiment/hate **fine-tunes** vs stock and laya-ara; it does **not** beat laya-ara on MASSIVE / XNLI / OSACT-A. Pick the card by task. Do not treat quote XNLI 0.697 as an NLI train result (zero-shot).
 
-**laya-ara-rag** is also **without XNLI** (MIRACL-ar train pair+rerank + 4k MASSIVE). Use for k≤12 relevance. Do not call it a retriever. It does not replace laya-ara on the locked suite.
+**laya-ara-rag** is **without XNLI**. It is the fatwa-search merge (in-house logs **not released**) plus a MIRACL-ar train replay and a 2k MASSIVE cap. Use for k≤12 relevance. Do not call it a retriever. Do not upload the fatwa dump next to those weights. It does not replace laya-ara on the locked suite. Card: sibling repo `laya-ara-rag`.
 
 ## Citation
 

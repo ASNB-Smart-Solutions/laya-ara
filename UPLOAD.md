@@ -71,6 +71,7 @@ python scripts/upload_to_hf.py \
 | `artifacts/laya-ar-v48` | **laya-ara** | default Hub dump (research / NC) |
 | `artifacts/laya-ar-quote` | laya-ara-quote | sentiment / hate product; **not** MASSIVE/XNLI winner |
 | `artifacts/laya-ar-triage` | laya-ara-triage | product demo only; not production tickets |
-| `artifacts/laya-ar-rag` | laya-ara-rag | k≤12 relevance / rerank; **not** a retriever, **not** locked-suite winner |
+| `artifacts/laya-ara-rag` (`laya-ar-ameen`) | **laya-ara-rag** | fatwa+MIRACL merge; **not** a retriever; **do not upload** `ameen-training-export/` |
+| `artifacts/laya-ar-rag` | — | Wikipedia-only ablation; do **not** publish under the laya-ara-rag name |
 
 Re-run the same script with `--ckpt` pointed at the winner. Keep **laya-ara** (v48) as the Hub default unless the card is explicitly quote-mix.

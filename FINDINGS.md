@@ -1,6 +1,6 @@
 # Additional experiments
 
-Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released card is the v48 mix. Scores: [`results/v48_all_benches.json`](results/v48_all_benches.json).
+Companion note to the laya-ara card. All comparisons use the same frozen Laya JSONL. Stock is `convaiinnovations/laya-multilingual`. The released NLU card is the v48 mix. Scores: [`results/v48_all_benches.json`](results/v48_all_benches.json). RAG sibling: [`../laya-ara-rag`](../laya-ara-rag).
 
 ## Setup
 
@@ -10,7 +10,8 @@ After the released mix, we trained three one-epoch specialists from stock (quote
 |---|---:|---|---|
 | laya-ara (released) | multi-cycle mix | yes (capped) | In-domain MASSIVE / OSACT-A / XNLI |
 | laya-ara-quote | 56,070 | no | Sentiment and hate fine-tune |
-| laya-ara-rag | 11,995 | no | MIRACL-ar train pair + listwise; 4k MASSIVE |
+| **laya-ara-rag** | **35,591** | no | Fatwa search logs (unreleased) + MIRACL replay; [sibling card](../laya-ara-rag) |
+| MIRACL-only ablation | 11,995 | no | Wikipedia pair + listwise; not the Hub RAG name |
 | laya-ara-triage | 1,200 + 2k MASSIVE | no | Synthetic Gulf support heads |
 
 ## Classification specialists
@@ -29,19 +30,19 @@ Quote-mix includes the *training* splits of AJGT, LABR, ASTD (minus a frozen 1,5
 
 ASTD accuracy 0.694 with macro-F1 0.404 indicates majority-class improvement, not balanced four-way sentiment. Quote XNLI 0.697 is zero-shot (XNLI was withheld).
 
-## Reranking specialist
+## Reranking specialist (**laya-ara-rag**)
 
-MIRACL-ar **dev** is in-family (train was MIRACL). The remaining listwise sets were not in the mix.
+The public RAG name is now the fatwa+MIRACL merge, not the Wikipedia-only 11,995-item run. Full tables: [`../laya-ara-rag`](../laya-ara-rag). Fatwa logs are described there and **not** uploaded.
 
-| Task | *n* | Kind | Stock | laya-ara | rag-ft |
-|---|---:|---|---:|---:|---:|
-| MIRACL-ar rerank (dev) | 2896 | in-family | 0.153 | 0.210 | **0.536** |
-| Mr.TyDi-ar | 2000 | transfer | 0.176 | 0.260 | **0.610** |
-| SadeemQuestion | 2089 | transfer | 0.168 | 0.242 | **0.781** |
-| MLQA-ar | 2000 | transfer | 0.133 | 0.214 | **0.507** |
-| XPQA-ar | 750 | transfer | 0.213 | 0.281 | **0.495** |
+| Task | *n* | Kind | Stock | laya-ara | MIRACL-only | **laya-ara-rag** |
+|---|---:|---|---:|---:|---:|---:|
+| MIRACL-ar rerank (dev) | 2896 | in-family | 0.153 | 0.210 | 0.536 | **0.588** |
+| Mr.TyDi-ar | 2000 | transfer | 0.176 | 0.260 | 0.610 | **0.632** |
+| SadeemQuestion | 2089 | transfer | 0.168 | 0.242 | 0.781 | **0.871** |
+| MLQA-ar | 2000 | transfer | 0.133 | 0.214 | 0.507 | **0.582** |
+| XPQA-ar | 750 | transfer | 0.213 | 0.281 | 0.495 | **0.665** |
 
-Pairwise noul is mixed: MIRACL pair 0.688 → 0.758; Mintaka and MLQA pairwise **decrease**. Listwise transfer does not imply pairwise transfer. Sadeem rerank ECE 0.468: the head is over-confident on easy random negatives.
+Pairwise MIRACL 0.688 → **0.788**. Mintaka / MLQA / XPQA pairwise can drop. Listwise **6/7** vs the Wikipedia-only ablation (Mintaka 0.403 → 0.388). In-domain sealed fatwa pair 0.812 → **0.938** (queries not released). Do not advertise a 21-row listwise as 100%.
 
 ## Synthetic triage
 

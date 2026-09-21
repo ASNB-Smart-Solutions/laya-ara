@@ -5,7 +5,7 @@
   "scored": "2026-09-21",
   "protocol": "Same frozen Laya JSONL for stock and v48. Not generation. RAG is k<=12 rerank/relevance, not nDCG@10.",
   "findings": {
-    "headline": "Three specialists. None replaces v48 on MASSIVE/XNLI/OSACT-A.",
+    "headline": "Specialists. None replaces v48 on MASSIVE/XNLI/OSACT-A. Public RAG name is laya-ara-rag (fatwa merge), not the MIRACL-only ablation.",
     "share_nlu": "v48 MASSIVE-ar 20-opt intent 0.386 -> 0.816",
     "share_rag_ft_listwise": [
       {"task": "miracl_ar_rerank_dev", "kind": "in-family", "n": 2896, "stock": 0.153, "rag_ft": 0.536, "delta": 0.383},
@@ -16,7 +16,9 @@
     ],
     "do_not_share": [
       "ASTD quote 0.694 acc as balanced 4-way (F1 0.404)",
-      "rag-ft 0.536 as nDCG@10 or a retriever",
+      "laya-ara-rag 0.588 as nDCG@10 or a retriever",
+      "fatwa corpus / search logs / gold questions",
+      "21-row fatwa listwise as 100%",
       "synthetic triage hold200 as production ticket accuracy"
     ]
   },
@@ -52,6 +54,34 @@
     "mlqa_rerank_test2000": {"n": 2000, "negs": "random paragraph", "stock": 0.1325, "v48": 0.2135, "delta": 0.0810},
     "xpqa_pair_test": {"n": 1500, "negs": "random answer", "stock": 0.6233, "v48": 0.6967, "delta": 0.0733},
     "xpqa_rerank_test": {"n": 750, "negs": "random answer", "stock": 0.2133, "v48": 0.2813, "delta": 0.0680}
+  },
+  "laya_ara_rag": {
+    "note": "Public RAG card. artifacts/laya-ara-rag -> laya-ar-ameen. Unreleased fatwa logs + MIRACL replay + 2k MASSIVE. No XNLI. Still k<=12. Logs not in this repo.",
+    "checkpoint": "artifacts/laya-ara-rag",
+    "n_train": 35591,
+    "pair": {
+      "miracl_ar_dev": {"n": 5792, "stock": 0.688, "v48": 0.629, "miracl_only": 0.758, "laya_ara_rag": 0.788},
+      "mrtydi_ar_train2000": {"n": 4000, "stock": 0.755, "v48": 0.740, "miracl_only": 0.811, "laya_ara_rag": 0.834},
+      "sadeem": {"n": 4178, "stock": 0.837, "v48": 0.919, "miracl_only": 0.913, "laya_ara_rag": 0.941},
+      "phqa": {"n": 172, "stock": 0.791, "v48": 0.773, "miracl_only": 0.843, "laya_ara_rag": 0.866},
+      "mintaka": {"n": 4406, "stock": 0.537, "v48": 0.616, "miracl_only": 0.526, "laya_ara_rag": 0.513},
+      "mlqa_test2000": {"n": 4000, "stock": 0.731, "v48": 0.784, "miracl_only": 0.707, "laya_ara_rag": 0.706},
+      "xpqa": {"n": 1500, "stock": 0.623, "v48": 0.697, "miracl_only": 0.625, "laya_ara_rag": 0.615}
+    },
+    "rerank": {
+      "miracl_ar_dev": {"n": 2896, "stock": 0.153, "v48": 0.210, "miracl_only": 0.536, "laya_ara_rag": 0.588},
+      "mrtydi_ar_train2000": {"n": 2000, "stock": 0.176, "v48": 0.260, "miracl_only": 0.610, "laya_ara_rag": 0.632},
+      "sadeem": {"n": 2089, "stock": 0.168, "v48": 0.242, "miracl_only": 0.781, "laya_ara_rag": 0.871},
+      "phqa": {"n": 86, "stock": 0.116, "v48": 0.244, "miracl_only": 0.326, "laya_ara_rag": 0.488},
+      "mintaka": {"n": 2203, "stock": 0.285, "v48": 0.311, "miracl_only": 0.403, "laya_ara_rag": 0.388},
+      "mlqa_test2000": {"n": 2000, "stock": 0.133, "v48": 0.214, "miracl_only": 0.507, "laya_ara_rag": 0.582},
+      "xpqa": {"n": 750, "stock": 0.213, "v48": 0.281, "miracl_only": 0.495, "laya_ara_rag": 0.665}
+    },
+    "in_domain_fatwa_aggregates": {
+      "released": false,
+      "human_pair": {"n": 112, "stock": 0.812, "miracl_only": 0.732, "laya_ara_rag": 0.938},
+      "teacher_rerank_hold": {"n": 200, "stock": 0.110, "miracl_only": 0.355, "laya_ara_rag": 0.575}
+    }
   },
   "rag_ft": {
     "note": "laya-ar-rag from stock, no XNLI, 11995 items (MIRACL-ar train pair+rerank + 4k MASSIVE). Frozen eval. Still top-1@k<=12, not nDCG@10. Pairwise mixed; listwise 7/7.",
