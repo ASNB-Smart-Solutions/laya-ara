@@ -12,12 +12,40 @@ We release **laya-ara**, a fine-tune of [`convaiinnovations/laya-multilingual`](
 
 On a frozen evaluation protocol, 20-option MASSIVE-ar intent accuracy rises from 0.386 (stock) to **0.816**. 18-way scenario classification reaches 0.865; that is a different task and should not be reported as intent. XNLI-ar is 0.723 (stock 0.686). OSACT4-A macro-F1 is 0.862 (stock 0.726). Sentiment and hate-speech *transfer* from this mix is weak or negative. Short-list passage reranking (top-1 among *k*≤12) improves on seven Arabic sets; this is not corpus-level nDCG@10.
 
-```python
-import laya
-agent = laya.load("Wouze/laya-ara")
+## Inference
+
+`laya` is the [ConvAI Laya](https://pypi.org/project/laya/) runtime (`pip install laya==0.3.4`). It is a typed-decision engine, not Transformers `AutoModel`. `laya.load` accepts a Hub id or a local directory that contains `model.safetensors`, `rl_agent_config.json`, `encoder/`, and `tokenizer/`. The Hub repo is **private**: pass a write/read token or `huggingface-cli login`.
+
+```bash
+pip install "laya==0.3.4"
+export USE_TF=0          # otherwise import can hang on a TensorFlow probe
+export HF_TOKEN=hf_...   # required while Wouze/laya-ara is private
 ```
 
-Machine-readable scores: [`results/v48_all_benches.json`](results/v48_all_benches.json). Follow-on mixes: [`FINDINGS.md`](FINDINGS.md).
+```python
+import os
+import laya
+
+agent = laya.load("Wouze/laya-ara", token=os.environ.get("HF_TOKEN"))
+out = agent.predict(
+    {"message": "الحوالة ما وصلت، أبي استرجاع وإلا بنقلع"},
+    {
+        "queue": {
+            "type": "choice",
+            "instructions": "Support queue",
+            "criteria": {
+                "billing": "payments, refunds",
+                "technical": "bugs, outages",
+                "other": "none of the above",
+            },
+        },
+        "refund": {"type": "noul", "instructions": "Asks for a refund?"},
+    },
+)
+print(out["answers"])
+```
+
+Local weights: `laya.load("/path/to/artifacts/laya-ar-v48")`. Longer demo: [`examples/predict_triage.py`](examples/predict_triage.py). Scores: [`results/v48_all_benches.json`](results/v48_all_benches.json). Follow-on mixes: [`FINDINGS.md`](FINDINGS.md).
 
 ## Method
 

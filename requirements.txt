@@ -1,2 +1,2 @@
-laya
+laya==0.3.4
 huggingface_hub>=0.24.0

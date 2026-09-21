@@ -9,10 +9,9 @@ os.environ.setdefault("USE_TF", "0")
 
 import laya
 
-# After upload: Wouze/laya-ara
-# Until then, stock or a local checkpoint:
-#   LAYA_AR_MODEL=artifacts/laya-ar-v48  or  convaiinnovations/laya-multilingual
-MODEL = os.environ.get("LAYA_AR_MODEL", "convaiinnovations/laya-multilingual")
+# pip install laya==0.3.4
+# Private Hub dump needs HF_TOKEN. Local: LAYA_AR_MODEL=/path/to/artifacts/laya-ar-v48
+MODEL = os.environ.get("LAYA_AR_MODEL", "Wouze/laya-ara")
 
 STATE = {
     "channel": "whatsapp",
@@ -42,7 +41,7 @@ QUESTIONS = {
 
 
 def main() -> None:
-    agent = laya.load(MODEL)
+    agent = laya.load(MODEL, token=os.environ.get("HF_TOKEN"))
     out = agent.predict(STATE, QUESTIONS)
     print(out)
 
