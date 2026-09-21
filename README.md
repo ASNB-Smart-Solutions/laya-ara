@@ -10,6 +10,8 @@
 
 We release **laya-ara**, a fine-tune of [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual) (mmBERT-base with a Laya typed-decision head, ~322M) for Arabic *System One* inference: discrete `choice`, binary `noul`, and optional ordinal `score`. The model is not generative. Training uses official Laya RLCD on two RTX 3090 GPUs. The released weights correspond to the v48 mix (MASSIVE-ar, OSACT4-A, and a capped XNLI-ar sample). Because XNLI is CC BY-NC 4.0, these weights are **research / non-commercial** ([`NOTICE.md`](NOTICE.md)).
 
+## Results
+
 On a frozen evaluation protocol, 20-option MASSIVE-ar intent accuracy rises from 0.386 (stock) to **0.816**. 18-way scenario classification reaches 0.865; that is a different task and should not be reported as intent. XNLI-ar is 0.723 (stock 0.686). OSACT4-A macro-F1 is 0.862 (stock 0.726). Sentiment and hate-speech *transfer* from this mix is weak or negative. Short-list passage reranking (top-1 among *k*≤12) improves on seven Arabic sets; this is not corpus-level nDCG@10.
 
 ## Inference
