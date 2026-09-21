@@ -1,0 +1,42 @@
+{
+  "name": "laya-ara",
+  "hub": "https://huggingface.co/Wouze/laya-ara",
+  "sibling": "https://huggingface.co/Wouze/laya-ara-rag",
+  "model": "artifacts/laya-ar-v48",
+  "base": "convaiinnovations/laya-multilingual",
+  "scored": "2026-09-21",
+  "protocol": "Same frozen Laya JSONL for stock and v48. Not generation. RAG rows here are this card’s transfer (no MIRACL train).",
+  "locked": {
+    "massive_ar_intent_20opt": {"n": 2974, "stock": 0.386, "laya_ara": 0.816},
+    "massive_ar_scenario": {"n": 2974, "stock": 0.427, "laya_ara": 0.865},
+    "massive_ar_hier_intent": {"n": 2694, "stock": 0.536, "laya_ara": 0.893},
+    "xnli_ar": {"n": 5010, "stock": 0.686, "laya_ara": 0.723},
+    "osact4_a_macro_f1": {"n": 1000, "stock": 0.726, "laya_ara": 0.862, "stock_acc": 0.844, "laya_ara_acc": 0.920}
+  },
+  "zero_shot_nlu": {
+    "osact4_hs": {"n": 1000, "stock": [0.932, 0.655], "laya_ara": [0.875, 0.645], "note": "v48 worse"},
+    "ajgt": {"n": 360, "stock": 0.833, "laya_ara": 0.756, "note": "v48 worse"},
+    "labr_binary": {"n": 2348, "stock": 0.759, "laya_ara": 0.766},
+    "astd_hold": {"n": 1500, "stock": [0.295, 0.286], "laya_ara": [0.326, 0.297]},
+    "tydiqa_sent": {"n": 298, "stock": [0.359, 0.155], "laya_ara": [0.413, 0.170], "note": "sentence pick, not span EM/F1"}
+  },
+  "rerank_k12_this_card": {
+    "note": "No MIRACL train in this mix. Specialist numbers live on Wouze/laya-ara-rag.",
+    "mrtydi_ar": {"n": 2000, "stock": 0.176, "laya_ara": 0.260},
+    "sadeem": {"n": 2089, "stock": 0.168, "laya_ara": 0.242},
+    "mlqa_ar": {"n": 2000, "stock": 0.133, "laya_ara": 0.214},
+    "miracl_ar_dev": {"n": 2896, "stock": 0.153, "laya_ara": 0.210},
+    "xpqa_ar": {"n": 750, "stock": 0.213, "laya_ara": 0.281},
+    "phqa_ar": {"n": 86, "stock": 0.116, "laya_ara": 0.244},
+    "mintaka_ar": {"n": 2203, "stock": 0.285, "laya_ara": 0.311}
+  },
+  "pair_noul_this_card": {
+    "miracl_ar_dev": {"n": 5792, "stock": 0.688, "laya_ara": 0.629},
+    "mrtydi_ar": {"n": 4000, "stock": 0.755, "laya_ara": 0.740},
+    "sadeem": {"n": 4178, "stock": 0.837, "laya_ara": 0.919},
+    "phqa_ar": {"n": 172, "stock": 0.791, "laya_ara": 0.773},
+    "mintaka_ar": {"n": 4406, "stock": 0.537, "laya_ara": 0.616},
+    "mlqa_ar": {"n": 4000, "stock": 0.731, "laya_ara": 0.784},
+    "xpqa_ar": {"n": 1500, "stock": 0.623, "laya_ara": 0.697}
+  }
+}

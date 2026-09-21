@@ -8,6 +8,8 @@ Arabic typed-decision fine-tune of `laya-multilingual` (MASSIVE-ar, XNLI-ar, OSA
 
 **Mohammad Alkhenizan** · 21 September 2026
 
+NLU card. Sibling RAG specialist: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag). Code: [`ASNB-Smart-Solutions/laya-ara`](https://github.com/ASNB-Smart-Solutions/laya-ara). Combined tables (all cards): [`results/all_cards.json`](results/all_cards.json) on GitHub.
+
 ## Abstract
 
 We release **laya-ara**, a fine-tune of [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual) (mmBERT-base with a Laya typed-decision head, ~322M) for Arabic *System One* inference: discrete `choice`, binary `noul`, and optional ordinal `score`. The model is not generative. Training uses official Laya RLCD on two RTX 3090 GPUs. The released weights correspond to the v48 mix (MASSIVE-ar, OSACT4-A, and a capped XNLI-ar sample). Because XNLI is CC BY-NC 4.0, these weights are **research / non-commercial** ([`NOTICE.md`](NOTICE.md)).
@@ -85,15 +87,16 @@ The released mix does **not** include MIRACL train. Metric: top-1 among ≤12 ca
 
 All seven listwise files improve. Pairwise noul on human/BM25 Wikipedia negatives still favours stock.
 
-## Follow-on checkpoints
+## Related cards
 
-Subsequent one-epoch specialists do not dominate the released card on MASSIVE / XNLI / OSACT-A.
+This Hub page reports **laya-ara** only. Specialists do not replace these MASSIVE / XNLI / OSACT-A rows.
 
-| Checkpoint | Training distribution | Principal result | Scope |
-|---|---|---|---|
-| quote (no XNLI) | MASSIVE, OSACT-A/HS, AJGT, LABR, ASTD remainder | AJGT 0.875; LABR 0.834 | In-domain fine-tune. MASSIVE falls to 0.822. ASTD accuracy 0.694 vs macro-F1 0.404 |
-| **laya-ara-rag** (no XNLI) | Unreleased fatwa search logs + MIRACL replay | MIRACL rerank 0.153 → **0.588**; sealed fatwa pair 0.812 → **0.938** | Still *k*≤12. Logs not in the repo. [Sibling card](https://huggingface.co/Wouze/laya-ara-rag) |
-| triage | 1.2k authored Gulf lines | Smoke churn 0.03 → 0.91 | Synthetic labels. Urgency remains weak |
+| Card | Role |
+|---|---|
+| **laya-ara** (this) | In-domain intent / NLI / offensive-A |
+| [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag) | k≤12 relevance / rerank (fatwa logs not released) |
+
+Quote and triage stay local. Full comparison, including those runs: GitHub [`FINDINGS.md`](FINDINGS.md) and [`results/all_cards.json`](results/all_cards.json).
 
 ## Limitations
 

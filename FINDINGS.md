@@ -41,8 +41,10 @@ The public RAG name is now the fatwa+MIRACL merge, not the Wikipedia-only 11,995
 | SadeemQuestion | 2089 | transfer | 0.168 | 0.242 | 0.781 | **0.871** |
 | MLQA-ar | 2000 | transfer | 0.133 | 0.214 | 0.507 | **0.582** |
 | XPQA-ar | 750 | transfer | 0.213 | 0.281 | 0.495 | **0.665** |
+| PublicHealthQA-ar | 86 | transfer | 0.116 | 0.244 | 0.326 | **0.488** |
+| Mintaka-ar | 2203 | transfer | 0.285 | 0.311 | **0.403** | 0.388 |
 
-Pairwise MIRACL 0.688 → **0.788**. Mintaka / MLQA / XPQA pairwise can drop. Listwise **6/7** vs the Wikipedia-only ablation (Mintaka 0.403 → 0.388). In-domain sealed fatwa pair 0.812 → **0.938** (queries not released). Do not advertise a 21-row listwise as 100%.
+Pairwise (`noul`): MIRACL 0.688 → **0.788**; Sadeem 0.837 → **0.941**. Mintaka / MLQA / XPQA pairwise still favor this NLU card (0.616 / 0.784 / 0.697). In-domain sealed fatwa pair 0.812 → **0.938** (queries not released). Do not advertise a 21-row listwise as 100%. Full grid: [`results/all_cards.json`](results/all_cards.json).
 
 ## Synthetic triage
 

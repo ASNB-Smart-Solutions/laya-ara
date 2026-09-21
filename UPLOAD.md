@@ -56,7 +56,7 @@ python scripts/upload_to_hf.py \
 ## 4. Card checks on the Hub
 
 - YAML `license` / NC note visible
-- **All** tables present (locked, MASSIVE variants, translated NLU, 7×2 RAG) — not only the top 5
+- NLU tables + this card’s short-list transfer. Specialist RAG numbers live on `Wouze/laya-ara-rag`
 - `base_model: convaiinnovations/laya-multilingual`
 - Anti-claims section not deleted
 - Example snippet uses `laya.load`, not `AutoModelForCausalLM`

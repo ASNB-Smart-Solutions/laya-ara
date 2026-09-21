@@ -1,0 +1,94 @@
+{
+  "scored": "2026-09-21",
+  "protocol": "Frozen Laya JSONL. Not generation. RAG is pairwise noul or listwise choice k<=12, not nDCG@10.",
+  "cards": {
+    "laya-ara": {
+      "hub": "https://huggingface.co/Wouze/laya-ara",
+      "github": "https://github.com/ASNB-Smart-Solutions/laya-ara",
+      "local": "artifacts/laya-ar-v48",
+      "xnli": true,
+      "role": "NLU / MASSIVE / XNLI / OSACT-A (research / NC)"
+    },
+    "laya-ara-rag": {
+      "hub": "https://huggingface.co/Wouze/laya-ara-rag",
+      "github": "https://github.com/ASNB-Smart-Solutions/laya-ara-rag",
+      "local": "artifacts/laya-ara-rag",
+      "xnli": false,
+      "role": "Short-list relevance / rerank. Fatwa logs not released."
+    }
+  },
+  "data_audit_laya_ara_rag": {
+    "export": "ameen-training-export (gitignored)",
+    "corpus_fatwas": 31018,
+    "scholars": {"ibn_baz": 24119, "ibn_uthaymin": 6899},
+    "lists": 9307,
+    "lists_reranked": 9245,
+    "unique_queries": 8806,
+    "unique_reranked_queries": 8750,
+    "gold_queries": 21,
+    "gold_fatwas": 56,
+    "gold_in_latest_list": {"found": 48, "missing_stage1": 8, "any_gold_r_at_1": 14, "any_gold_r_at_3": 15, "any_gold_r_at_12": 19},
+    "processed": {
+      "pair_train": 17064,
+      "rerank_train": 8532,
+      "gold_pair": 112,
+      "gold_rerank": 21,
+      "teacher_pair_hold": 400,
+      "teacher_rerank_hold": 200
+    },
+    "leakage": {
+      "gold_in_train": 0,
+      "gold_in_hold": 0,
+      "hold_in_train": 0
+    },
+    "mix_items": 35591,
+    "mix": {"fatwa_pair": 17064, "fatwa_rerank": 8532, "miracl_replay": 7995, "massive_cap": 2000},
+    "teacher_r1_r2_gap_p50": 0.009,
+    "list_len_p50": 50
+  },
+  "nlu": {
+    "massive_ar_intent_20opt": {"n": 2974, "stock": 0.386, "laya_ara": 0.816, "quote": null},
+    "massive_ar_scenario": {"n": 2974, "stock": 0.427, "laya_ara": 0.865, "quote": 0.822},
+    "massive_ar_hier_intent": {"n": 2694, "stock": 0.536, "laya_ara": 0.893},
+    "xnli_ar": {"n": 5010, "stock": 0.686, "laya_ara": 0.723, "quote": 0.697, "quote_kind": "zero-shot"},
+    "osact4_a": {"n": 1000, "stock_acc": 0.844, "laya_ara_acc": 0.920, "quote_acc": 0.901, "stock_f1": 0.726, "laya_ara_f1": 0.862, "quote_f1": 0.823},
+    "osact4_hs": {"n": 1000, "kind": "quote_ft", "stock": [0.932, 0.655], "laya_ara": [0.875, 0.645], "quote": [0.963, 0.677]},
+    "ajgt": {"n": 360, "kind": "quote_ft", "stock": 0.833, "laya_ara": 0.756, "quote": 0.875},
+    "labr_binary": {"n": 2348, "kind": "quote_ft", "stock": 0.759, "laya_ara": 0.766, "quote": 0.834},
+    "astd_hold": {"n": 1500, "kind": "quote_ft", "stock": [0.295, 0.286], "laya_ara": [0.326, 0.297], "quote": [0.694, 0.404], "note": "majority-class; not balanced 4-way"}
+  },
+  "rerank_k12": {
+    "miracl_ar_dev": {"n": 2896, "kind": "in-family-for-rag", "stock": 0.153, "laya_ara": 0.210, "miracl_only": 0.536, "laya_ara_rag": 0.588},
+    "mrtydi_ar": {"n": 2000, "kind": "transfer", "stock": 0.176, "laya_ara": 0.260, "miracl_only": 0.610, "laya_ara_rag": 0.632},
+    "sadeem": {"n": 2089, "kind": "transfer", "stock": 0.168, "laya_ara": 0.242, "miracl_only": 0.781, "laya_ara_rag": 0.871},
+    "mlqa_ar": {"n": 2000, "kind": "transfer", "stock": 0.133, "laya_ara": 0.214, "miracl_only": 0.507, "laya_ara_rag": 0.582},
+    "xpqa_ar": {"n": 750, "kind": "transfer", "stock": 0.213, "laya_ara": 0.281, "miracl_only": 0.495, "laya_ara_rag": 0.665},
+    "phqa_ar": {"n": 86, "kind": "transfer", "stock": 0.116, "laya_ara": 0.244, "miracl_only": 0.326, "laya_ara_rag": 0.488, "note": "tiny n"},
+    "mintaka_ar": {"n": 2203, "kind": "transfer", "stock": 0.285, "laya_ara": 0.311, "miracl_only": 0.403, "laya_ara_rag": 0.388, "note": "MIRACL-only wins"}
+  },
+  "pair_noul": {
+    "miracl_ar_dev": {"n": 5792, "negs": "human", "stock": 0.688, "laya_ara": 0.629, "miracl_only": 0.758, "laya_ara_rag": 0.788},
+    "mrtydi_ar": {"n": 4000, "negs": "BM25", "stock": 0.755, "laya_ara": 0.740, "miracl_only": 0.811, "laya_ara_rag": 0.834},
+    "sadeem": {"n": 4178, "negs": "random corpus", "stock": 0.837, "laya_ara": 0.919, "miracl_only": 0.913, "laya_ara_rag": 0.941},
+    "phqa_ar": {"n": 172, "negs": "random FAQ", "stock": 0.791, "laya_ara": 0.773, "miracl_only": 0.843, "laya_ara_rag": 0.866},
+    "mintaka_ar": {"n": 4406, "negs": "random entity", "stock": 0.537, "laya_ara": 0.616, "miracl_only": 0.526, "laya_ara_rag": 0.513, "note": "laya-ara wins"},
+    "mlqa_ar": {"n": 4000, "negs": "random paragraph", "stock": 0.731, "laya_ara": 0.784, "miracl_only": 0.707, "laya_ara_rag": 0.706, "note": "laya-ara wins"},
+    "xpqa_ar": {"n": 1500, "negs": "random answer", "stock": 0.623, "laya_ara": 0.697, "miracl_only": 0.625, "laya_ara_rag": 0.615, "note": "laya-ara wins"}
+  },
+  "in_domain_fatwa": {
+    "released": false,
+    "human_pair": {"n": 112, "stock": 0.812, "laya_ara": 0.714, "miracl_only": 0.732, "laya_ara_rag": 0.938},
+    "human_rerank": {"n": 21, "stock": 0.143, "laya_ara": 0.619, "miracl_only": 0.952, "laya_ara_rag": 1.0, "do_not_headline": true},
+    "teacher_pair_hold": {"n": 400, "stock": 0.640, "laya_ara": 0.642, "miracl_only": 0.662, "laya_ara_rag": 0.792},
+    "teacher_rerank_hold": {"n": 200, "stock": 0.110, "laya_ara": 0.175, "miracl_only": 0.355, "laya_ara_rag": 0.575}
+  },
+  "triage_synthetic": {
+    "smoke_churn": {"stock": 0.029, "laya_ara": 0.030, "triage": 0.914},
+    "hold200": {
+      "queue_acc": {"stock": 0.395, "laya_ara": 0.440, "triage": 0.750},
+      "urgency_nearest": {"stock": 0.225, "laya_ara": 0.240, "triage": 0.330},
+      "refund_f1": {"stock": 0.732, "laya_ara": 0.711, "triage": 0.949},
+      "churn_f1": {"stock": 0.064, "laya_ara": 0.182, "triage": 0.913}
+    }
+  }
+}

@@ -46,6 +46,11 @@ def copy_ckpt(src: Path, dest: Path) -> None:
         if target.exists():
             shutil.rmtree(target)
         shutil.copytree(ROOT / folder, target)
+    # Hub card: this model's benches only. Combined grid stays on GitHub.
+    for extra in ("all_cards.json", "v48_all_benches.json"):
+        p = dest / "results" / extra
+        if p.exists():
+            p.unlink()
 
 
 def main() -> None:
