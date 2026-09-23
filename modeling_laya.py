@@ -44,12 +44,41 @@ _RAG_EXAMPLE = (
 )
 
 
+def _format_example(state: dict, questions: dict, answers: dict) -> str:
+    lines = ["Example", ""]
+    for key, value in state.items():
+        lines.append(key)
+        lines.append(f"  {value}")
+        lines.append("")
+    for qid, spec in questions.items():
+        ans = answers[qid]
+        title = spec.get("instructions") or qid
+        lines.append(f"{qid}  ·  {title}")
+        if ans["type"] == "choice":
+            ranked = sorted(ans["probabilities"].items(), key=lambda item: item[1], reverse=True)
+            criteria = spec.get("criteria") or {}
+            width = max(len(str(key)) for key, _ in ranked)
+            for key, prob in ranked:
+                mark = "→" if key == ans["choice"] else " "
+                gloss = criteria.get(key)
+                extra = f"   {gloss}" if gloss else ""
+                lines.append(f"  {mark} {key:<{width}}  {prob * 100:5.1f}%{extra}")
+        elif ans["type"] == "noul":
+            yes = float(ans["noul"])
+            picked = "yes" if yes >= 0.5 else "no"
+            for label, prob in (("yes", yes), ("no", 1.0 - yes)):
+                mark = "→" if label == picked else " "
+                lines.append(f"  {mark} {label:<3}  {prob * 100:5.1f}%")
+        else:
+            lines.append(f"  score {ans.get('score')}")
+        lines.append("")
+    return "\n".join(lines).rstrip()
+
+
 def _print_example(agent, repo_id: str) -> None:
     state, questions = _RAG_EXAMPLE if "laya-ara-rag" in repo_id else _NLU_EXAMPLE
     answers = agent.predict(state, questions)["answers"]
-    print("Example")
-    print(state)
-    print(answers)
+    print(_format_example(state, questions, answers))
 
 
 class LayaModel(PreTrainedModel):
@@ -65,6 +94,11 @@ class LayaModel(PreTrainedModel):
         if self.agent is None:
             raise RuntimeError("Call from_pretrained before predict.")
         return self.agent.predict(state, questions)
+
+    def show(self, state, questions):
+        out = self.predict(state, questions)
+        print(_format_example(state, questions, out["answers"]))
+        return out
 
     def forward(self, input_ids=None, attention_mask=None, **kwargs):
         raise RuntimeError(
