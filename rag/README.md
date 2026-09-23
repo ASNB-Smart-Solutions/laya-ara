@@ -8,6 +8,8 @@ Arabic short-list reranker — passage relevance and *k*≤12 ranking on [`laya-
 
 **Mohammad Alkhenizan** · 21 September 2026 · [LinkedIn](https://www.linkedin.com/in/mohammad-alkhenizan-537623257)
 
+[![downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Fmodels%2FWouze%2Flaya-ara-rag&query=%24.downloads&label=downloads%2030d&color=yellow)](https://huggingface.co/Wouze/laya-ara-rag)
+
 [`Hugging Face`](https://huggingface.co/Wouze/laya-ara-rag) · [`GitHub`](https://github.com/ASNB-Smart-Solutions/laya-ara) · NLU: [`laya-ara`](https://huggingface.co/Wouze/laya-ara)
 
 ## Highlights vs `laya-multilingual`

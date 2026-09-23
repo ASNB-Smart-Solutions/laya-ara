@@ -62,6 +62,7 @@ def copy_ckpt(src: Path, dest: Path) -> None:
         "UPLOAD.md",
     ):
         shutil.copy2(RAG / doc, dest / doc)
+    shutil.copy2(RAG / "config.json", dest / "config.json")
     header = (RAG / "huggingface.yaml").read_text()
     body = (RAG / "README.md").read_text()
     (dest / "README.md").write_text(header.rstrip() + "\n\n" + body.lstrip())

@@ -8,7 +8,10 @@ Arabic typed-decision models on [`laya-multilingual`](https://huggingface.co/con
 
 **Mohammad Alkhenizan** · 21 September 2026 · [LinkedIn](https://www.linkedin.com/in/mohammad-alkhenizan-537623257)
 
-One GitHub repo. Two Hugging Face cards.
+[![laya-ara downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Fmodels%2FWouze%2Flaya-ara&query=%24.downloads&label=laya-ara%2030d&color=yellow)](https://huggingface.co/Wouze/laya-ara)
+[![laya-ara-rag downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Fmodels%2FWouze%2Flaya-ara-rag&query=%24.downloads&label=laya-ara-rag%2030d&color=yellow)](https://huggingface.co/Wouze/laya-ara-rag)
+
+One GitHub repo. Two Hugging Face cards. Download counts are the Hub’s last-30-day figure.
 
 | Model | Hub | In this repo |
 |---|---|---|

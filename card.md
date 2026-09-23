@@ -8,6 +8,8 @@ Arabic NLU for typed decisions — intent, NLI, and short-list ranking on [`laya
 
 **Mohammad Alkhenizan** · 21 September 2026 · [LinkedIn](https://www.linkedin.com/in/mohammad-alkhenizan-537623257)
 
+[![downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Fmodels%2FWouze%2Flaya-ara&query=%24.downloads&label=downloads%2030d&color=yellow)](https://huggingface.co/Wouze/laya-ara)
+
 [`Hugging Face`](https://huggingface.co/Wouze/laya-ara) · [`GitHub`](https://github.com/ASNB-Smart-Solutions/laya-ara) · RAG sibling: [`laya-ara-rag`](https://huggingface.co/Wouze/laya-ara-rag)
 
 ## Highlights vs `laya-multilingual`

@@ -1,0 +1,6 @@
+{
+  "model_type": "laya",
+  "library": "laya",
+  "weights": "model.safetensors",
+  "base_model": "convaiinnovations/laya-multilingual"
+}

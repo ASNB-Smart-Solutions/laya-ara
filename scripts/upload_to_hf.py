@@ -47,6 +47,7 @@ def copy_ckpt(src: Path, dest: Path) -> None:
         if target.exists():
             shutil.rmtree(target)
         shutil.copytree(ROOT / folder, target)
+    shutil.copy2(ROOT / "config.json", dest / "config.json")
     leftover = dest / "results" / "v48_all_benches.json"
     if leftover.exists():
         leftover.unlink()
