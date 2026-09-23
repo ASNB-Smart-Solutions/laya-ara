@@ -39,8 +39,24 @@ class LayaModel(PreTrainedModel):
         os.environ.setdefault("USE_TF", "0")
         try:
             import laya
-        except ImportError as exc:
-            raise ImportError("Install the Laya runtime first: pip install 'laya==0.3.4'") from exc
+        except ImportError:
+            import subprocess
+            import sys
+
+            install_error = None
+            for cmd in (
+                [sys.executable, "-m", "pip", "install", "laya==0.3.4"],
+                ["pip", "install", "laya==0.3.4"],
+            ):
+                try:
+                    subprocess.check_call(cmd)
+                    install_error = None
+                    break
+                except (OSError, subprocess.CalledProcessError) as exc:
+                    install_error = exc
+            if install_error is not None:
+                raise ImportError("Could not install laya==0.3.4. Run: pip install 'laya==0.3.4'") from install_error
+            import laya
         agent = laya.load(str(pretrained_model_name_or_path), token=token)
         if config is None:
             config = LayaConfig()
