@@ -78,6 +78,7 @@ def copy_ckpt(src: Path, dest: Path) -> None:
         shutil.copy2(ROOT / "results" / name, dest / "results" / name)
     (dest / "examples").mkdir(exist_ok=True)
     shutil.copy2(ROOT / "examples" / "predict_rerank.py", dest / "examples" / "predict_rerank.py")
+    shutil.copy2(ROOT / "examples" / "colab_rag.ipynb", dest / "examples" / "colab_rag.ipynb")
     if (ROOT / "assets").is_dir():
         if (dest / "assets").exists():
             shutil.rmtree(dest / "assets")

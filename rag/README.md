@@ -35,7 +35,9 @@ The mix continues from a MIRACL-ar Wikipedia specialist, then adds in-house Arab
 
 ## Inference
 
-`laya` is the [ConvAI Laya](https://pypi.org/project/laya/) runtime (`pip install laya==0.3.4`). The Hub **Use this model** snippet passes `trust_remote_code=True` and then calls `laya.load`. After loading, call `predict` (or `model.predict` if you used the Hub snippet).
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ASNB-Smart-Solutions/laya-ara/blob/master/examples/colab_rag.ipynb)
+
+`laya` is the [ConvAI Laya](https://pypi.org/project/laya/) runtime (`pip install laya==0.3.4`). The Hub **Use this model** snippet passes `trust_remote_code=True` and then calls `laya.load`. After loading, call `predict` (or `model.predict` if you used the Hub snippet). The snippet also prints this example.
 
 ```bash
 pip install "laya==0.3.4"

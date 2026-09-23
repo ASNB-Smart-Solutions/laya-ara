@@ -10,6 +10,47 @@ from transformers import PreTrainedModel
 
 from .configuration_laya import LayaConfig
 
+# Same calls as the model card. The Hub Colab cell only loads the pipeline,
+# so from_pretrained runs one of these and prints the answers.
+_NLU_EXAMPLE = (
+    {"message": "الحوالة ما وصلت، أبي استرجاع وإلا بنقلع"},
+    {
+        "queue": {
+            "type": "choice",
+            "instructions": "Support queue",
+            "criteria": {
+                "billing": "payments, refunds",
+                "technical": "bugs, outages",
+                "other": "none of the above",
+            },
+        },
+        "refund": {"type": "noul", "instructions": "Asks for a refund?"},
+    },
+)
+_RAG_EXAMPLE = (
+    {"query": "ما حكم الوضوء قبل قراءة القرآن؟"},
+    {
+        "passage": {
+            "type": "choice",
+            "instructions": "Which passage is most relevant to the query?",
+            "criteria": {
+                "a": "الوضوء شرط للصلاة لا للقراءة عند جمهور الفقهاء.",
+                "b": "زكاة الفطر تجب على كل مسلم قبل صلاة العيد.",
+                "c": "صيام عاشوراء سنة مؤكدة عند الحنابلة.",
+            },
+        },
+        "relevant": {"type": "noul", "instructions": "Is passage A relevant to the query?"},
+    },
+)
+
+
+def _print_example(agent, repo_id: str) -> None:
+    state, questions = _RAG_EXAMPLE if "laya-ara-rag" in repo_id else _NLU_EXAMPLE
+    answers = agent.predict(state, questions)["answers"]
+    print("Example")
+    print(state)
+    print(answers)
+
 
 class LayaModel(PreTrainedModel):
     config_class = LayaConfig
@@ -62,6 +103,7 @@ class LayaModel(PreTrainedModel):
             config = LayaConfig()
         model = cls(config)
         model.agent = agent
+        _print_example(agent, str(pretrained_model_name_or_path))
         return model
 
 
