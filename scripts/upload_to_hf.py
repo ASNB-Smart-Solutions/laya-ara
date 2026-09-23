@@ -47,7 +47,14 @@ def copy_ckpt(src: Path, dest: Path) -> None:
         if target.exists():
             shutil.rmtree(target)
         shutil.copytree(ROOT / folder, target)
-    shutil.copy2(ROOT / "config.json", dest / "config.json")
+    for name in (
+        "config.json",
+        "tokenizer_config.json",
+        "configuration_laya.py",
+        "modeling_laya.py",
+        "tokenization_laya.py",
+    ):
+        shutil.copy2(ROOT / name, dest / name)
     leftover = dest / "results" / "v48_all_benches.json"
     if leftover.exists():
         leftover.unlink()

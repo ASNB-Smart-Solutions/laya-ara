@@ -16,9 +16,9 @@ tags:
   - laya
   - intent-classification
   - natural-language-inference
-library_name: laya
+  - custom_code
+library_name: transformers
 pipeline_tag: text-classification
-inference: false
 thumbnail: https://huggingface.co/Wouze/laya-ara/resolve/main/assets/logo.jpg
 metrics:
   - accuracy

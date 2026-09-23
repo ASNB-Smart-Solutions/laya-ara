@@ -63,6 +63,13 @@ def copy_ckpt(src: Path, dest: Path) -> None:
     ):
         shutil.copy2(RAG / doc, dest / doc)
     shutil.copy2(RAG / "config.json", dest / "config.json")
+    for name in (
+        "tokenizer_config.json",
+        "configuration_laya.py",
+        "modeling_laya.py",
+        "tokenization_laya.py",
+    ):
+        shutil.copy2(ROOT / name, dest / name)
     header = (RAG / "huggingface.yaml").read_text()
     body = (RAG / "README.md").read_text()
     (dest / "README.md").write_text(header.rstrip() + "\n\n" + body.lstrip())

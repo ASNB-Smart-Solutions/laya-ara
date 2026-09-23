@@ -14,9 +14,9 @@ tags:
   - reranking
   - rag
   - laya
-library_name: laya
-pipeline_tag: text-ranking
-inference: false
+  - custom_code
+library_name: transformers
+pipeline_tag: text-classification
 thumbnail: https://huggingface.co/Wouze/laya-ara-rag/resolve/main/assets/logo.jpg
 metrics:
   - accuracy

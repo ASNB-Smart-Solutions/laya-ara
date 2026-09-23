@@ -53,7 +53,7 @@ Mintaka entity ranking does not improve. Write-up: [`rag/README.md`](rag/README.
 
 ## Inference
 
-`laya` is the [ConvAI Laya](https://pypi.org/project/laya/) runtime (`pip install laya==0.3.4`).
+`laya` is the [ConvAI Laya](https://pypi.org/project/laya/) runtime (`pip install laya==0.3.4`). The Hub **Use this model** snippet passes `trust_remote_code=True` and then calls `laya.load`.
 
 ```bash
 pip install "laya==0.3.4"
