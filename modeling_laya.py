@@ -8,7 +8,7 @@ import torch
 from torch import nn
 from transformers import PreTrainedModel
 
-from configuration_laya import LayaConfig
+from .configuration_laya import LayaConfig
 
 
 class LayaModel(PreTrainedModel):
